@@ -1,0 +1,24 @@
+project:
+  id: stablecoin_yield
+  title: "The Price of Yield: Persistence, Mechanisms and TVL Response in Stablecoin DeFi"
+  version: "1.0.0"
+  timezone: UTC
+  language: en
+  data_freeze: null
+
+research:
+  primary_question: "Are high stablecoin-denominated DeFi yields persistent, and how do quoted APY episodes relate to incentives, peg stress and observed TVL?"
+  unit_of_analysis: "pool-day"
+  population: "DeFi yield pools whose underlying assets are stablecoins or yield-bearing stablecoins"
+  observation_start: null
+  observation_end: null
+  minimum_followup_days: 180
+  target_pool_count_min: 100
+  target_pool_count_strong: 200
+
+reproducibility:
+  random_seed: 42
+  output_dir: outputs
+  fail_on_critical_quality_error: true
+  sample_mode_pool_limit: 30
+  full_mode_pool_limit: 250

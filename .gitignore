@@ -1,0 +1,45 @@
+# Secrets and local environments
+.env
+.venv/
+
+# Python and test caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+htmlcov/
+.coverage
+
+# Provider data and generated local datasets
+data/
+tmp/
+
+# Private course materials kept locally, outside the portfolio release
+docs/Project example/
+
+# Generated previews and renderer-specific diagnostics
+outputs/report/rendered_preview/
+outputs/presentation/chart_assets/
+outputs/presentation/pdf_preview/
+outputs/presentation/powerpoint_preview/
+outputs/presentation/rendered_preview/
+outputs/presentation/*.inspect.ndjson
+outputs/presentation/stablecoin_yield_slides.csv
+outputs/presentation/stablecoin_yield_slides.json
+outputs/presentation/stablecoin_yield_slides.md
+outputs/presentation/*_contact_sheet.png
+!outputs/presentation/stablecoin_yield_presentation_powerpoint_contact_sheet.png
+outputs/figures/*.pdf
+outputs/figures/*.svg
+outputs/tables/pool_archetypes.csv
+outputs/tables/pool_metrics.csv
+outputs/tables/yield_episodes.csv
+outputs/tables/yield_frontier.csv
+outputs/**/*.tmp
+
+# Editor and OS files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

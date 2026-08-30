@@ -1,0 +1,26 @@
+style:
+  font_family: "DejaVu Sans"
+  background: "#fbfbf8"
+  text: "#1f2933"
+  muted_text: "#5b6673"
+  grid: "#d8dee6"
+  focus: "#2364aa"
+  warning: "#c44e52"
+  neutral: "#8a8f98"
+  palette:
+    lending: "#2364aa"
+    stable_stable_lp: "#2a9d8f"
+    yield_bearing_stablecoin: "#7b2cbf"
+    vault_aggregator: "#f4a261"
+    leveraged_recursive: "#b56576"
+    incentive_driven: "#e76f51"
+    other: "#6c757d"
+  export:
+    width: 1800
+    height: 1050
+    dpi: 180
+    formats: ["png", "svg", "pdf"]
+  date_format: "%Y-%m-%d"
+  currency_format: "USD"
+  source_note: "Sources: DeFiLlama, CoinGecko and selected official protocol documentation. APY is annualized quoted APY, not realized return."
+

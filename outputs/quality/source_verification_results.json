@@ -1,0 +1,139 @@
+[
+  {
+    "source": "defillama_yields",
+    "endpoint": "/pools",
+    "status_code": 200,
+    "raw_file": "data/raw/defillama_yields/20260708/pools_511497a752f3.json",
+    "summary": {
+      "row_count": 15669,
+      "stable_candidates_tvl_gt_1m_history_gt_180": 489,
+      "first_keys": [
+        "chain",
+        "project",
+        "symbol",
+        "tvlUsd",
+        "apyBase",
+        "apyReward",
+        "apy",
+        "rewardTokens",
+        "pool",
+        "apyPct1D",
+        "apyPct7D",
+        "apyPct30D",
+        "stablecoin",
+        "ilRisk",
+        "exposure",
+        "predictions",
+        "poolMeta",
+        "mu",
+        "sigma",
+        "count",
+        "outlier",
+        "underlyingTokens",
+        "il7d",
+        "apyBase7d",
+        "apyMean30d",
+        "volumeUsd1d",
+        "volumeUsd7d",
+        "apyBaseInception"
+      ]
+    }
+  },
+  {
+    "source": "defillama_yields",
+    "endpoint": "/chart/{pool}",
+    "status_code": 200,
+    "raw_file": "data/raw/defillama_yields/20260708/chart_d8c4eff5-c8a9-46fc-a888-057c4c668e72_040872557220.json",
+    "summary": {
+      "pool": "d8c4eff5-c8a9-46fc-a888-057c4c668e72",
+      "project": "sky-lending",
+      "symbol": "SUSDS",
+      "row_count": 503,
+      "first_keys": [
+        "timestamp",
+        "tvlUsd",
+        "apy",
+        "apyBase",
+        "apyReward",
+        "il7d",
+        "apyBase7d",
+        "pricePerShare"
+      ]
+    }
+  },
+  {
+    "source": "defillama_stablecoins",
+    "endpoint": "/stablecoins",
+    "status_code": 200,
+    "raw_file": "data/raw/defillama_stablecoins/20260708/stablecoins_845bdca3f1a6.json",
+    "summary": {
+      "stablecoin_count": 404,
+      "first_keys": [
+        "id",
+        "name",
+        "symbol",
+        "gecko_id",
+        "pegType",
+        "priceSource",
+        "pegMechanism",
+        "circulating",
+        "circulatingPrevDay",
+        "circulatingPrevWeek",
+        "circulatingPrevMonth",
+        "chainCirculating",
+        "chains",
+        "price"
+      ]
+    }
+  },
+  {
+    "source": "defillama_stablecoins",
+    "endpoint": "/stablecoinprices",
+    "status_code": 200,
+    "raw_file": "data/raw/defillama_stablecoins/20260708/stablecoinprices_378b23c0d6b7.json",
+    "summary": {
+      "row_count": 2012,
+      "first_keys": [
+        "date",
+        "prices"
+      ]
+    }
+  },
+  {
+    "source": "coingecko",
+    "endpoint": "/coins/markets",
+    "status_code": 200,
+    "raw_file": "data/raw/coingecko/20260708/coins_markets_b25b1531dab2.json",
+    "summary": {
+      "row_count": 3,
+      "first_keys": [
+        "id",
+        "symbol",
+        "name",
+        "image",
+        "current_price",
+        "market_cap",
+        "market_cap_rank",
+        "fully_diluted_valuation",
+        "total_volume",
+        "high_24h",
+        "low_24h",
+        "price_change_24h",
+        "price_change_percentage_24h",
+        "market_cap_change_24h",
+        "market_cap_change_percentage_24h",
+        "circulating_supply",
+        "total_supply",
+        "max_supply",
+        "ath",
+        "ath_change_percentage",
+        "ath_date",
+        "atl",
+        "atl_change_percentage",
+        "atl_date",
+        "roi",
+        "last_updated"
+      ]
+    }
+  }
+]

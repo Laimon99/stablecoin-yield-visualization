@@ -1,0 +1,17 @@
+{
+  "analysis_id": "stablecoin_yield_full",
+  "mode": "full",
+  "outputs": {
+    "market_overview": 9,
+    "yield_episodes": 9490,
+    "pool_metrics": 250,
+    "episode_survival": 112,
+    "ranking_churn": 7938,
+    "yield_frontier": 250,
+    "apy_tvl_event_response": 38,
+    "depeg_event_study": 61,
+    "pool_archetypes": 250,
+    "robustness_checks": 13
+  },
+  "random_seed": 42
+}

@@ -1,0 +1,618 @@
+{
+  "project": "stablecoin_yield",
+  "mode": "full",
+  "created_at": "2026-08-30T10:00:33.919966Z",
+  "file_count": 122,
+  "files": [
+    {
+      "path": ".env.example",
+      "size_bytes": 177,
+      "checksum": "sha256:ed5e1357e0fb8424ee02935b4cca19126f3731613c3e345404e5ecbc94b9ba5a"
+    },
+    {
+      "path": ".gitattributes",
+      "size_bytes": 222,
+      "checksum": "sha256:f6e02f35fbb7a2feebf4a40f7168ce206d1ac13cf5fcdccc4bc9ec6bb1cdbcb2"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "size_bytes": 664,
+      "checksum": "sha256:2800d0d2e328f69d413c58d133544e2396d8f4032ff5883bd918d3c813acb4a1"
+    },
+    {
+      "path": ".gitignore",
+      "size_bytes": 1105,
+      "checksum": "sha256:18292e5a53e433a785d3d7aa7253719c0b8adad3fe1a0ca12fa0be32b4ba283e"
+    },
+    {
+      "path": "LICENSE",
+      "size_bytes": 503,
+      "checksum": "sha256:fd068662c8f148c8e83f342d560a9ec490eb2adc25e86e6baa716612b2e852e6"
+    },
+    {
+      "path": "Makefile",
+      "size_bytes": 1855,
+      "checksum": "sha256:b6455b3a8b25a0db185403c54d5fb46538bd849046928609f98b2c2d10fd6d64"
+    },
+    {
+      "path": "NOTICE.md",
+      "size_bytes": 1439,
+      "checksum": "sha256:f4095566f73770a45472c9504df8837c11e9f7f980d729649cb9294ce10fb55c"
+    },
+    {
+      "path": "README.md",
+      "size_bytes": 5649,
+      "checksum": "sha256:514e78222344c2b8fc92667922a3b3fbd7695c47910282614fcbe770cf150849"
+    },
+    {
+      "path": "config/metrics.yaml",
+      "size_bytes": 751,
+      "checksum": "sha256:042804c20354581a8183b6f3cf902cd6a6d3441314f0d0c4ce2c40439dab06fd"
+    },
+    {
+      "path": "config/project.yaml",
+      "size_bytes": 791,
+      "checksum": "sha256:9fd5bbc10e363a9728fab81ca6ee9c0980f26550c7712fb13b32d0db74044cfe"
+    },
+    {
+      "path": "config/sources.yaml",
+      "size_bytes": 2361,
+      "checksum": "sha256:663aa252050684f8e8acfbf9c645cffb0a7f2acd66c4a7b05f759f9eb2eae48f"
+    },
+    {
+      "path": "config/visualization.yaml",
+      "size_bytes": 694,
+      "checksum": "sha256:e58e3e4bb0f40450fbfaf41fdb48b89a3b44c1139d6025f75938cc1690e22710"
+    },
+    {
+      "path": "docs/completion_audit.md",
+      "size_bytes": 5169,
+      "checksum": "sha256:1aa1fbe40417fe54441eede18ae2dac2d80199bacf2541e479f2d5b90a5f6484"
+    },
+    {
+      "path": "docs/course_requirements.md",
+      "size_bytes": 4612,
+      "checksum": "sha256:ebce874ef455419a585d960a273664ecf701ca0e2ffb94c77210dfa0295a17a1"
+    },
+    {
+      "path": "docs/data_dictionary.md",
+      "size_bytes": 7375,
+      "checksum": "sha256:d05966242937aaa85e790bc4116bc4cc7a17504be41fa36ca6193f021d820ceb"
+    },
+    {
+      "path": "docs/decision_log.md",
+      "size_bytes": 6843,
+      "checksum": "sha256:7e942a0d28f7e9df657b00b2e4022606aac3ab8234af8605f38eabd0a65dc30c"
+    },
+    {
+      "path": "docs/entity_resolution.md",
+      "size_bytes": 1888,
+      "checksum": "sha256:48842850de83883381fd9bdb7fcd8e65ca3b86d9a361d2e8a579bdd1e8a1a860"
+    },
+    {
+      "path": "docs/exam_presentation_integrity.md",
+      "size_bytes": 637,
+      "checksum": "sha256:6d1c4fc7b334a656939d63c42552152904ed787c745b0c15a5a2befa81292cf4"
+    },
+    {
+      "path": "docs/implementation_plan.md",
+      "size_bytes": 3561,
+      "checksum": "sha256:73fa8092909f7449a6171e957619aa56364d147d716a9670b6d30e9d71d6c63e"
+    },
+    {
+      "path": "docs/limitations_ethics.md",
+      "size_bytes": 2053,
+      "checksum": "sha256:9477464f6e73ed5d734b86de661f81b61457477c04fe133feff701c7c0032301"
+    },
+    {
+      "path": "docs/methodology.md",
+      "size_bytes": 4296,
+      "checksum": "sha256:9a3543b8eda69776a3ad5d38a5860a234f5a64a026bf2a538a51ba53ac38e0e9"
+    },
+    {
+      "path": "docs/oral_defense.md",
+      "size_bytes": 6887,
+      "checksum": "sha256:c278d4788d065e9c69548110b319b278e0f21fb9b39ba5e951a5c7c6ea851b99"
+    },
+    {
+      "path": "docs/portfolio_readiness_audit.md",
+      "size_bytes": 2301,
+      "checksum": "sha256:e57a7ad89fc143b58ba1efe5cf789064be6f772f4f452b45a5e8afce682e2138"
+    },
+    {
+      "path": "docs/project_charter.md",
+      "size_bytes": 4114,
+      "checksum": "sha256:32b8f5508475c85caa862262f6645e0791f2e6e83e3f3c06a27cbf725615fafa"
+    },
+    {
+      "path": "docs/qa_checklist.md",
+      "size_bytes": 2639,
+      "checksum": "sha256:028b77fa042f58d61334daac45ca53fe69e8e6d06063bbf6825ccf9a7cbe5903"
+    },
+    {
+      "path": "docs/report_outline.md",
+      "size_bytes": 381,
+      "checksum": "sha256:bcda557ec1752d04ac127aa390593e65408d94c3ecb3b59e0d94861f31d0884b"
+    },
+    {
+      "path": "docs/research_questions.md",
+      "size_bytes": 2047,
+      "checksum": "sha256:6b127f600906216d1fcd8e8a7bd2082f59db550c914ed024cd7be4598e6b582a"
+    },
+    {
+      "path": "docs/risk_register.md",
+      "size_bytes": 2342,
+      "checksum": "sha256:d807247b9eb8e94de512f546c93327afff10d8f678ab11086fff97c5dce78e67"
+    },
+    {
+      "path": "docs/source_feasibility.md",
+      "size_bytes": 3075,
+      "checksum": "sha256:9e4354469f765c97cf3dc0c33f95e8cb064bca5732a1e917e69a24061892f09a"
+    },
+    {
+      "path": "docs/source_registry.md",
+      "size_bytes": 5368,
+      "checksum": "sha256:66afa76d1c3accfabfb53450dda08aeab337f368758ecf83a5d846b458d464f7"
+    },
+    {
+      "path": "docs/visualization_storyboard.md",
+      "size_bytes": 1406,
+      "checksum": "sha256:8e9692ff680fd0377e83c4bfb34c28090b16efebf8a176127301b56b1c0c9eca"
+    },
+    {
+      "path": "outputs/analysis_manifest.json",
+      "size_bytes": 385,
+      "checksum": "sha256:94f6e640338ab469128e7b44dfc2733cdf1e3dee20f86db77c53dca2959d071d"
+    },
+    {
+      "path": "outputs/figures/fig_01_yield_universe.png",
+      "size_bytes": 128257,
+      "checksum": "sha256:bee6240cb8b0fce39d54fa4f44dec8d7a95e775867687d8c0221c591902128e3"
+    },
+    {
+      "path": "outputs/figures/fig_02_apy_distribution.png",
+      "size_bytes": 75353,
+      "checksum": "sha256:b1a6cb7d9b2425487c771d65d6f6aeb7fc9a45e4df520590ae8e64f810bd6559"
+    },
+    {
+      "path": "outputs/figures/fig_03_episode_survival.png",
+      "size_bytes": 79947,
+      "checksum": "sha256:c926bb91c22907f20fd3aa7a4de1a6b6342675dcc06d25300a1faff139b8ebe3"
+    },
+    {
+      "path": "outputs/figures/fig_04_ranking_churn.png",
+      "size_bytes": 68150,
+      "checksum": "sha256:ccc254f08db781ffa55c32e3b09cfc5694c1f124bf04b6ddadedbd768aa96c06"
+    },
+    {
+      "path": "outputs/figures/fig_05_yield_persistence_frontier.png",
+      "size_bytes": 173853,
+      "checksum": "sha256:89d969affffc76d5f9ad7a5b1dc8b786963f3a8533115eb5320e50b34c94637c"
+    },
+    {
+      "path": "outputs/figures/fig_06_base_vs_reward.png",
+      "size_bytes": 78349,
+      "checksum": "sha256:cc25dc76a0c266087577aa2f96fd7accbdce3e976c12598efa85fbdca6264e76"
+    },
+    {
+      "path": "outputs/figures/fig_07_apy_tvl_relationship.png",
+      "size_bytes": 129320,
+      "checksum": "sha256:a8fce216dc821a82a9bb9e41b432de129aa5e33d7e9ef9232318f08fb16a2860"
+    },
+    {
+      "path": "outputs/figures/fig_08_depeg_event_study.png",
+      "size_bytes": 141654,
+      "checksum": "sha256:3043ac561ec0efb19094a9384b99e8a6ed3c9d9e85748a8e72d14fc2979ff819"
+    },
+    {
+      "path": "outputs/figures/fig_09_pool_archetypes.png",
+      "size_bytes": 122501,
+      "checksum": "sha256:9f11023213d6b77aac8843d0e396ea67ab7a6b98d927f3b97773670fdaace828"
+    },
+    {
+      "path": "outputs/figures/fig_10_hero_yield_frontier.png",
+      "size_bytes": 185481,
+      "checksum": "sha256:0f32e6ba020a42cf1adbca89ff593c653717b45ad6dc5f42319baaaac96cb6e9"
+    },
+    {
+      "path": "outputs/figures/figure_registry.csv",
+      "size_bytes": 3013,
+      "checksum": "sha256:ec448fb609ec941e8b78d16c59a02f9cacdd02c9363198d345c05595090f9662"
+    },
+    {
+      "path": "outputs/presentation/presentation_qa.md",
+      "size_bytes": 5012,
+      "checksum": "sha256:caaaba91584d38f70878b8b21ca97188ec287686b3735a1234abfa07f29c5a7a"
+    },
+    {
+      "path": "outputs/presentation/speaker_notes.md",
+      "size_bytes": 2803,
+      "checksum": "sha256:e0d5875122e7b34bddd1b1d7b8f08b201ed8aab9a44373aa9e2442dd34923f9a"
+    },
+    {
+      "path": "outputs/presentation/stablecoin_yield_presentation.pdf",
+      "size_bytes": 536222,
+      "checksum": "sha256:f65d5ee43184126fe96ef3bd79023ecca51606b8f6c12da70d38dddb3f4be3e1"
+    },
+    {
+      "path": "outputs/presentation/stablecoin_yield_presentation.pptx",
+      "size_bytes": 422514,
+      "checksum": "sha256:0fff848c31bd67fdde2f30b66c4ab60741ad663f3da45a7a8ee20ced7bdd630f"
+    },
+    {
+      "path": "outputs/presentation/stablecoin_yield_presentation_powerpoint_contact_sheet.png",
+      "size_bytes": 1220847,
+      "checksum": "sha256:b83193c104bc4e258049bad67ef2ea8eb1e0758ae231eed1dc1ea8c6fdf0865b"
+    },
+    {
+      "path": "outputs/quality/data_quality_checks.csv",
+      "size_bytes": 911,
+      "checksum": "sha256:72a6b2a3377b3f34650c469924396d34841f7ffacc8699e67ddc93f9a790c585"
+    },
+    {
+      "path": "outputs/quality/data_quality_report.md",
+      "size_bytes": 2393,
+      "checksum": "sha256:4d2d88c27f4e9b2725e5a50214d76137e39af5152800cfe68bc2f75e9abb5319"
+    },
+    {
+      "path": "outputs/quality/insight_registry.md",
+      "size_bytes": 1912,
+      "checksum": "sha256:227411b80395c9c8f6a829f882eba4fa51fe6d9d9ab59551323405d3582a493b"
+    },
+    {
+      "path": "outputs/quality/source_verification_results.json",
+      "size_bytes": 3208,
+      "checksum": "sha256:02a36e7663794c16cddc14b8c7cfab1e325214388cc2691dbb5201828d96e3d1"
+    },
+    {
+      "path": "outputs/report/report_design_review.md",
+      "size_bytes": 2035,
+      "checksum": "sha256:0797132ae6705b4f2344ebbffa5f7bfaf37e58fecc1ebd2c98adf532c5b6892c"
+    },
+    {
+      "path": "outputs/report/report_summary.json",
+      "size_bytes": 69780,
+      "checksum": "sha256:bd8e974ad0deed410a86927859ea13aad7b0eede1ee91e563c27c13e41dd0347"
+    },
+    {
+      "path": "outputs/report/stablecoin_yield_report.md",
+      "size_bytes": 14931,
+      "checksum": "sha256:efb10d88e60ac37d0ac20149a265eaca5a3a60e20dbc12c7f4ffec6bc9ed6cc1"
+    },
+    {
+      "path": "outputs/report/stablecoin_yield_report.pdf",
+      "size_bytes": 1272776,
+      "checksum": "sha256:72c798661b5113a51ba47a4cf15bf7507cc2ae074433934f650029c01bd220dc"
+    },
+    {
+      "path": "outputs/report/stablecoin_yield_report_contact_sheet.png",
+      "size_bytes": 339365,
+      "checksum": "sha256:af0c5b7593613e31c68112db5b1679552ee3faebcaa72463d54b0e6b658dc74f"
+    },
+    {
+      "path": "outputs/tables/apy_tvl_event_response.csv",
+      "size_bytes": 1375,
+      "checksum": "sha256:cfcd265a4fd920c5b7309a1eb9d3179fe0cd7110f7d7ec3d9c0143ee699b4656"
+    },
+    {
+      "path": "outputs/tables/depeg_event_study.csv",
+      "size_bytes": 4703,
+      "checksum": "sha256:6ef43f96a4620b74d7b50e741f61ef446b29744342bae0518e288a350b621bfb"
+    },
+    {
+      "path": "outputs/tables/episode_survival.csv",
+      "size_bytes": 7836,
+      "checksum": "sha256:a0cbc0f8bdc2486bc9b2e435d2590c6532e9f43de7df87d408fc5eceafa80e09"
+    },
+    {
+      "path": "outputs/tables/market_overview.csv",
+      "size_bytes": 239,
+      "checksum": "sha256:d624877bd4492d5276e155cbc97ed90f35dca46c636d65194120169bdb9656ad"
+    },
+    {
+      "path": "outputs/tables/ranking_churn.csv",
+      "size_bytes": 277653,
+      "checksum": "sha256:96d4ce2333e20c5d8efb10974ed297914abb18beaba40b9f3a02b34c5d62e57c"
+    },
+    {
+      "path": "outputs/tables/robustness_checks.csv",
+      "size_bytes": 1443,
+      "checksum": "sha256:20febf91fa7fe47b801305c75c2a29a49d70984468b1124a0b691f09df5a1e72"
+    },
+    {
+      "path": "pyproject.toml",
+      "size_bytes": 1425,
+      "checksum": "sha256:c61bdbff40ace916b27fd7c85c510cc18e4316ae63e61384438f9f7d39cc8911"
+    },
+    {
+      "path": "scripts/build_dataset.py",
+      "size_bytes": 556,
+      "checksum": "sha256:f0f7a7c3bbca275905b642f2cfd161b0ab3353d7ede5afb1f0a540f69bc0cb7c"
+    },
+    {
+      "path": "scripts/build_presentation_assets.py",
+      "size_bytes": 672,
+      "checksum": "sha256:ae5d175fb98c8260752b78c805114b48cd423fe345fdd8ce13cc81863068005f"
+    },
+    {
+      "path": "scripts/build_presentation_contact_sheet.py",
+      "size_bytes": 1526,
+      "checksum": "sha256:caab773f120e81482cb32d14666e4b6ea050c023c832148e693d57e733c5ae1e"
+    },
+    {
+      "path": "scripts/build_presentation_deck.mjs",
+      "size_bytes": 60663,
+      "checksum": "sha256:169d415d5e3c2d1c6d0ff89eca0b0a350e8eea127643b8f954f5780eab8865be"
+    },
+    {
+      "path": "scripts/build_report.py",
+      "size_bytes": 611,
+      "checksum": "sha256:f5c6e0a0a4599bb7366c0df9e0508a91b12311e488f998e0341a39623e841c6d"
+    },
+    {
+      "path": "scripts/clean_outputs.py",
+      "size_bytes": 723,
+      "checksum": "sha256:1a29ad4d8b92b95cabf2761aaa404130b899cce3040f2b8a9845236e69982f0a"
+    },
+    {
+      "path": "scripts/collect.py",
+      "size_bytes": 2975,
+      "checksum": "sha256:05575c4a00afed1dfda2afc4e123885fa4027f973761c101171c4f4403243820"
+    },
+    {
+      "path": "scripts/render_figures.py",
+      "size_bytes": 539,
+      "checksum": "sha256:784a92f964fda42bf5c4df7322a3429f8866ce15dada531b261063a09f7bd3da"
+    },
+    {
+      "path": "scripts/render_presentation_powerpoint.ps1",
+      "size_bytes": 3209,
+      "checksum": "sha256:b0b4bafa56c9d06ea650787c441b5c99ff085cdd51b15c915121495c86cd2dfa"
+    },
+    {
+      "path": "scripts/render_report_preview.py",
+      "size_bytes": 2212,
+      "checksum": "sha256:9360983debb385b0e065019e2de156328bd4ac557c6d9be61199747075577a63"
+    },
+    {
+      "path": "scripts/reproduce_all.py",
+      "size_bytes": 2125,
+      "checksum": "sha256:debb6171a841faf77714b345d53f9d63341e14fe089f8053652716ce979fd73d"
+    },
+    {
+      "path": "scripts/run_analysis.py",
+      "size_bytes": 531,
+      "checksum": "sha256:f23adcb4a32e537f7e7172ddc7e0b5bc0b480cabfa909cc2f692b598d901582b"
+    },
+    {
+      "path": "scripts/run_quality.py",
+      "size_bytes": 531,
+      "checksum": "sha256:5abe05b56fa244ff141f294344e9305fc07a7c790cf410364ad54bf79d3d9a3b"
+    },
+    {
+      "path": "scripts/verify_sources.py",
+      "size_bytes": 552,
+      "checksum": "sha256:513c3a25e6073d7bc0b4bdec4b3d975eb0cea6f20ced083743e912e35621772a"
+    },
+    {
+      "path": "src/stablecoin_yield/__init__.py",
+      "size_bytes": 90,
+      "checksum": "sha256:172ee29d59aa1dd03d92588ce28f3561d7525f49d146adc25bab3ece8d46e45f"
+    },
+    {
+      "path": "src/stablecoin_yield/analysis/__init__.py",
+      "size_bytes": 29,
+      "checksum": "sha256:923ee47115aaab87a7f8030c6590842dc6e6586341163a948ea34fd9af5c3b43"
+    },
+    {
+      "path": "src/stablecoin_yield/analysis/pipeline.py",
+      "size_bytes": 20340,
+      "checksum": "sha256:0ba52551a049dc5dc0348c3b5c626294cb43f092bfe380d795ff770fcde30285"
+    },
+    {
+      "path": "src/stablecoin_yield/cli.py",
+      "size_bytes": 679,
+      "checksum": "sha256:097db527cb8c725b1e9588a0daa8cd1f69b5e7792c221289a9b30e6d51711db8"
+    },
+    {
+      "path": "src/stablecoin_yield/config.py",
+      "size_bytes": 2272,
+      "checksum": "sha256:627f61dd16eb3002ba964630226f0b8d198f16851a10473724b124c7f0280a4e"
+    },
+    {
+      "path": "src/stablecoin_yield/http.py",
+      "size_bytes": 3673,
+      "checksum": "sha256:65b343dddf014bd139ac797ee377bbf6ed5187790cfd2c2bbce14dff64952e01"
+    },
+    {
+      "path": "src/stablecoin_yield/ingestion/__init__.py",
+      "size_bytes": 32,
+      "checksum": "sha256:dd3e0dd9501825a85090c23ee6f6a015cb2c5f429b3186f21e8cf522caeb963e"
+    },
+    {
+      "path": "src/stablecoin_yield/ingestion/coingecko.py",
+      "size_bytes": 1832,
+      "checksum": "sha256:2cb1b231864ccf8c3723928587263720058de256c6f2b3c5299602e9c2f5f4be"
+    },
+    {
+      "path": "src/stablecoin_yield/ingestion/defillama.py",
+      "size_bytes": 1915,
+      "checksum": "sha256:70fdcc87eaa0f00bef1f012172c91722def909e3b1d223a99acdf928e972ab55"
+    },
+    {
+      "path": "src/stablecoin_yield/metrics/__init__.py",
+      "size_bytes": 25,
+      "checksum": "sha256:680d36882cb4d6de963e6006033c7f826c9298a505db0192ec87fbbc736dfff5"
+    },
+    {
+      "path": "src/stablecoin_yield/metrics/core.py",
+      "size_bytes": 3688,
+      "checksum": "sha256:0448eb1b2e5ca7385240d016de38878bb43829264024ecd762bfd4df5397e831"
+    },
+    {
+      "path": "src/stablecoin_yield/metrics/episodes.py",
+      "size_bytes": 4424,
+      "checksum": "sha256:c6ef06bba9e2479ec268ba1289dc8f6af94686f23f00a0c83f5189a990ecae2c"
+    },
+    {
+      "path": "src/stablecoin_yield/metrics/ranking.py",
+      "size_bytes": 1589,
+      "checksum": "sha256:ef8cd7a95be5564ae9c1a84e5bd26caada129a75d779637232f45b62f6e135ff"
+    },
+    {
+      "path": "src/stablecoin_yield/presentation_assets.py",
+      "size_bytes": 10722,
+      "checksum": "sha256:55752da82b6ec85370e9bb37403087ab21bc23e6722b6b210f7a8091b465f17e"
+    },
+    {
+      "path": "src/stablecoin_yield/raw.py",
+      "size_bytes": 4707,
+      "checksum": "sha256:09613826b90cc1e618a9e73e7ed16bfa100b4156f21c4c452edfd7c52b292ecc"
+    },
+    {
+      "path": "src/stablecoin_yield/reporting/__init__.py",
+      "size_bytes": 180,
+      "checksum": "sha256:fa1b81955e5d85b5fd15cd20da811d85f36de6bb3aa5b79b629c4858654b8bdb"
+    },
+    {
+      "path": "src/stablecoin_yield/reporting/builder.py",
+      "size_bytes": 111847,
+      "checksum": "sha256:1713406a7e73df6e3c48c2a5d2d10d2b2c3fbd0e5682d38091fc6d36a14e9dee"
+    },
+    {
+      "path": "src/stablecoin_yield/reproducibility.py",
+      "size_bytes": 4067,
+      "checksum": "sha256:3c62bfef955eff9a5aef1ad8a7121789d475998117f09b181b67e0cb7ebeb103"
+    },
+    {
+      "path": "src/stablecoin_yield/source_verification.py",
+      "size_bytes": 5507,
+      "checksum": "sha256:324970e741346d21e182fb611df1dc2972396b62f7f469eab4ac3a69032b04d6"
+    },
+    {
+      "path": "src/stablecoin_yield/transformation/__init__.py",
+      "size_bytes": 39,
+      "checksum": "sha256:c6ea34a4a6ed867f1cc3cb95c762f0b6f4703963b44b58d0c662ac839ee246f8"
+    },
+    {
+      "path": "src/stablecoin_yield/transformation/build.py",
+      "size_bytes": 13862,
+      "checksum": "sha256:40ddf530fde6821487afb9855d01153e886aee3d5d23526cac4f9fd19c9caa1f"
+    },
+    {
+      "path": "src/stablecoin_yield/transformation/entities.py",
+      "size_bytes": 8566,
+      "checksum": "sha256:724fa00921624166ea3837970ddb41532becf779279709e0f4821368e2ce44ee"
+    },
+    {
+      "path": "src/stablecoin_yield/validation/__init__.py",
+      "size_bytes": 43,
+      "checksum": "sha256:5052098817bd66a8ba28760ded9479e3a7833ca8873da01bab4b02f27b2d3460"
+    },
+    {
+      "path": "src/stablecoin_yield/validation/quality.py",
+      "size_bytes": 4938,
+      "checksum": "sha256:0f385b633bd1519aefe3b0d8b6135a6e6f1ca4b57200d54900247d3e81ac104c"
+    },
+    {
+      "path": "src/stablecoin_yield/visualization/__init__.py",
+      "size_bytes": 32,
+      "checksum": "sha256:724e523595778b0fffde07582ed6b1b8f8bc3b07c30761a01cbdf3c0f33391fd"
+    },
+    {
+      "path": "src/stablecoin_yield/visualization/figures.py",
+      "size_bytes": 16631,
+      "checksum": "sha256:46556ac3bc6aeacb6bb7bbaabe95560e0ba6f954b509521fd7292f0c23d3a7b4"
+    },
+    {
+      "path": "tests/__init__.py",
+      "size_bytes": 21,
+      "checksum": "sha256:155d9701ac99102a1c317feef365d502b6e990ebcaae9ecdb6cb13d181c3a47d"
+    },
+    {
+      "path": "tests/contract/__init__.py",
+      "size_bytes": 23,
+      "checksum": "sha256:a45d8cf99fad1672bb1181bfa4498fe660fc21d2d4bc3715d5cebda052f82b4e"
+    },
+    {
+      "path": "tests/contract/test_source_contracts.py",
+      "size_bytes": 2778,
+      "checksum": "sha256:721c1b96ae8e00f77e7cbd7445042b6823b6491a7975f310925b8f53e28fb994"
+    },
+    {
+      "path": "tests/integration/__init__.py",
+      "size_bytes": 26,
+      "checksum": "sha256:d64ad313a432c360b02eb8d4287d6def7ef27c65556517a7c17f2c99b4875aca"
+    },
+    {
+      "path": "tests/integration/test_artifact_outputs.py",
+      "size_bytes": 1259,
+      "checksum": "sha256:17f7de38ee9acb4f83ed129e4aa4438ce955926ce921d2ad2ad75bd269bdc694"
+    },
+    {
+      "path": "tests/integration/test_presentation_outputs.py",
+      "size_bytes": 1194,
+      "checksum": "sha256:f977c46d034cde860b36356d954fe3912e929eefa42865c6d945dd4add1221d1"
+    },
+    {
+      "path": "tests/integration/test_report_generation.py",
+      "size_bytes": 2043,
+      "checksum": "sha256:66e7526660d9f7a06b43cfcc8da8728f25f2cd1b02ad9d7addc8d9c6b8b3ca82"
+    },
+    {
+      "path": "tests/regression/__init__.py",
+      "size_bytes": 25,
+      "checksum": "sha256:926ce303a9d6e8548a506c3bc9c360725ea5d358ed8ab1ddda256e6eeb31e357"
+    },
+    {
+      "path": "tests/regression/test_depeg_event_study.py",
+      "size_bytes": 557,
+      "checksum": "sha256:092a6b249e7004642a9412dd8a112a3a82f423e77b977845dee3c129f687f0b6"
+    },
+    {
+      "path": "tests/regression/test_release_manifest.py",
+      "size_bytes": 1890,
+      "checksum": "sha256:7823b84b1cc554dc90772102f8b65324227223455e3f61877abfdf0fe3df27cf"
+    },
+    {
+      "path": "tests/unit/__init__.py",
+      "size_bytes": 19,
+      "checksum": "sha256:11726d586214d5329207ffb3a1db86848bf02da97fed29ffc3e2842398eacd2d"
+    },
+    {
+      "path": "tests/unit/test_episodes.py",
+      "size_bytes": 1631,
+      "checksum": "sha256:693882378d5f7945ae59114fc7439ea749c2991ffb61899a0cd9ae8fb5c30b77"
+    },
+    {
+      "path": "tests/unit/test_http.py",
+      "size_bytes": 1021,
+      "checksum": "sha256:be635aa3218a21eefe50f42731822a925fe882cfa8d317d96ed12ef28ad91695"
+    },
+    {
+      "path": "tests/unit/test_metrics.py",
+      "size_bytes": 560,
+      "checksum": "sha256:213e3ae09964e17e7f9a8af8668b269bcc22d99e07ec1cd26a23074199559998"
+    },
+    {
+      "path": "tests/unit/test_ranking.py",
+      "size_bytes": 673,
+      "checksum": "sha256:d4d2aaa1b3a18e75a741e184e0aa80537256436cef756aecccec6cb09cb29bad"
+    },
+    {
+      "path": "tests/unit/test_reporting_summary.py",
+      "size_bytes": 911,
+      "checksum": "sha256:f1e793ecdc8f8b97c13523cea6fb1600798a47d3087735ea2d89e6f16ac32f42"
+    },
+    {
+      "path": "tests/unit/test_robustness.py",
+      "size_bytes": 1188,
+      "checksum": "sha256:0c9d4f8331d3bb247ab0c01a50e2901697cf3cec2a738ff1e11e600eab6ac8d3"
+    },
+    {
+      "path": "uv.lock",
+      "size_bytes": 474296,
+      "checksum": "sha256:2da744f10728ee8e5cdd4929748dc39b706abf280490aa069e035c03ee04fe81"
+    }
+  ]
+}

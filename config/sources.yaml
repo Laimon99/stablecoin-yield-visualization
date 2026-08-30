@@ -1,0 +1,66 @@
+sources:
+  defillama_yields:
+    enabled: true
+    official: true
+    provider: "DeFiLlama"
+    documentation: "https://api-docs.defillama.com/"
+    base_url: "https://yields.llama.fi"
+    auth: none
+    endpoints:
+      pools: "/pools"
+      pool_chart: "/chart/{pool_id}"
+    rate_limit:
+      requests_per_minute: 60
+      source: "Official docs describe Free API as no-auth with standard rate limit; exact numeric standard limit not published in llms-free.txt on 2026-07-08. Project uses conservative 60 rpm."
+    retry:
+      max_attempts: 5
+      backoff_seconds: [1, 2, 5, 10, 30]
+    raw_path: "data/raw/defillama_yields"
+
+  defillama_stablecoins:
+    enabled: true
+    official: true
+    provider: "DeFiLlama"
+    documentation: "https://api-docs.defillama.com/"
+    base_url: "https://stablecoins.llama.fi"
+    auth: none
+    endpoints:
+      stablecoins: "/stablecoins"
+      stablecoin_charts_all: "/stablecoins"
+    rate_limit:
+      requests_per_minute: 60
+      source: "Official docs describe Free API as no-auth with standard rate limit; exact numeric standard limit not published in llms-free.txt on 2026-07-08. Project uses conservative 60 rpm."
+    retry:
+      max_attempts: 5
+      backoff_seconds: [1, 2, 5, 10, 30]
+    raw_path: "data/raw/defillama_stablecoins"
+
+  coingecko:
+    enabled: true
+    official: true
+    provider: "CoinGecko"
+    documentation: "https://docs.coingecko.com/"
+    base_url: "https://api.coingecko.com/api/v3"
+    api_key_env: "COINGECKO_API_KEY"
+    auth: "optional demo/pro key, public endpoints may work without key subject to limits"
+    endpoints:
+      coins_markets: "/coins/markets"
+      market_chart: "/coins/{id}/market_chart"
+    rate_limit:
+      requests_per_minute: 25
+      source: "CoinGecko docs state cache/update frequency is 60 seconds for Demo/Keyless coins markets and market-chart has Demo historical restriction to past 365 days. Exact monthly credits depend on plan."
+    retry:
+      max_attempts: 5
+      backoff_seconds: [2, 5, 10, 30, 60]
+    raw_path: "data/raw/coingecko"
+
+  protocol_docs:
+    enabled: true
+    official: true
+    provider: "Selected protocol teams"
+    documentation: "per-protocol official documentation URLs"
+    auth: none
+    rate_limit:
+      requests_per_minute: null
+      source: "not applicable for static docs"
+    raw_path: "data/raw/protocol_docs"

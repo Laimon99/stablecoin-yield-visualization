@@ -1,0 +1,13 @@
+check_id,dataset,severity,status,evaluated_rows,failed_rows,failure_rate
+panel.exists,pool_day_panel,critical,passed,137095,0,0.0
+pool_day.unique_key,pool_day_panel,critical,passed,137095,0,0.0
+pool_day.apy_total.completeness,pool_day_panel,error,passed,137095,0,0.0
+pool_day.tvl_usd.completeness,pool_day_panel,warning,warning,137095,26,0.00018964951311134615
+pool_day.chain.completeness,pool_day_panel,warning,passed,137095,0,0.0
+pool_day.protocol_id.completeness,pool_day_panel,warning,passed,137095,0,0.0
+pool_day.pool_type.completeness,pool_day_panel,warning,passed,137095,0,0.0
+apy.non_negative,pool_day_panel,error,passed,137095,0,0.0
+apy.extreme_gt_1000,pool_day_panel,warning,warning,137095,32,0.00023341478536781065
+tvl.positive,pool_day_panel,error,passed,137095,0,0.0
+apy.total_vs_components,pool_day_panel,warning,passed,137095,0,0.0
+entity_resolution.low_confidence,pools,warning,passed,250,0,0.0
