@@ -1,21 +1,40 @@
 # The Price of Yield
 
-[![CI](https://github.com/Laimon99/data_viz/actions/workflows/ci.yml/badge.svg)](https://github.com/Laimon99/data_viz/actions/workflows/ci.yml)
+[![CI](https://github.com/Laimon99/stablecoin-yield-visualization/actions/workflows/ci.yml/badge.svg)](https://github.com/Laimon99/stablecoin-yield-visualization/actions/workflows/ci.yml)
 ![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-3776AB?logo=python&logoColor=white)
 ![Status](https://img.shields.io/badge/status-portfolio%20release-176B87)
 
-**Persistence, mechanisms and observed TVL response in stablecoin DeFi.**
+**A visual case study of persistence, mechanisms and observed TVL response in stablecoin DeFi.**
 
-DeFi interfaces reduce yield to one annualized percentage. This project tests why that
-number is not enough: high APY can be short-lived, incentive-dependent, capacity-constrained
-or observed during stablecoin stress. The result is a reproducible visual analysis, not a
-pool ranking or an investment recommendation.
+**Simone Ragusini** · Master's-level Data Visualization project · End-to-end analysis,
+visual storytelling and reproducible research pipeline
 
-![Joint screen of APY, persistence and TVL](outputs/figures/fig_10_hero_yield_frontier.png)
+[**View the 14-slide presentation (PDF)**](outputs/presentation/stablecoin_yield_presentation.pdf)
+· [PowerPoint](outputs/presentation/stablecoin_yield_presentation.pptx)
+· [Full report](outputs/report/stablecoin_yield_report.pdf)
+· [Methodology](docs/methodology.md)
 
-## What the analysis found
+[![Cover of The Price of Yield presentation](outputs/presentation/stablecoin_yield_presentation_cover.png)](outputs/presentation/stablecoin_yield_presentation.pdf)
 
-The frozen study covers **250 pools and 137,095 pool-days** through 8 July 2026.
+## The project in 30 seconds
+
+DeFi interfaces often reduce yield to one annualized percentage. I analyzed **250 stablecoin
+pools and 137,095 daily observations** to test whether high quoted yields persist, what produces
+them and how they relate to deposited capital and stablecoin stress.
+
+> **Headline finding:** high yield is common in snapshots, but persistent high yield with
+> capacity and interpretable context is much rarer.
+
+The project turns that question into a reproducible visual analysis rather than a pool ranking
+or investment recommendation.
+
+### Plain-English glossary
+
+- **APY:** the annualized yield quoted by a protocol, not necessarily the return an investor realizes.
+- **TVL:** the value deposited in a protocol, used here as a capacity and activity proxy.
+- **Pool-day:** one liquidity or lending pool observed on one calendar day.
+
+## Key findings
 
 - The median contiguous episode above 10% quoted APY lasts **2 days**.
 - Ranking churn rises from **13.5% after 1 day** to **33.3% after 30 days**.
@@ -26,23 +45,38 @@ The frozen study covers **250 pools and 137,095 pool-days** through 8 July 2026.
 - Reward composition, pool type and peg context materially change how a quoted APY should be
   interpreted.
 
-These are sample-specific, non-causal results. See [methodology](docs/methodology.md) and
-[limitations](docs/limitations_ethics.md) before interpreting them.
+These results are sample-specific and non-causal. The project makes its assumptions and
+limitations explicit rather than presenting a hidden safety score.
 
-## Portfolio artifacts
+![Joint screen of APY, persistence and TVL](outputs/figures/fig_10_hero_yield_frontier.png)
 
-- [Final analytical report (PDF)](outputs/report/stablecoin_yield_report.pdf)
-- [Exam presentation (PowerPoint)](outputs/presentation/stablecoin_yield_presentation.pptx)
-- [Presentation PDF](outputs/presentation/stablecoin_yield_presentation.pdf)
-- [PowerPoint-rendered presentation overview](outputs/presentation/stablecoin_yield_presentation_powerpoint_contact_sheet.png)
-- [Oral-defense notes](docs/oral_defense.md)
-- [Figure registry](outputs/figures/figure_registry.csv)
-- [Data-quality report](outputs/quality/data_quality_report.md)
+## What this portfolio project demonstrates
 
-The exam presentation is intentionally frozen. Its integrity record is documented in
+- **Data engineering:** API ingestion, checksummed raw envelopes, canonical schemas and entity
+  resolution.
+- **Statistical analysis:** episode survival, ranking churn, event studies, clustering and
+  robustness checks.
+- **Data visualization:** ten publication-ready figures, a 14-slide narrative deck and a
+  16-page analytical report.
+- **Research communication:** plain-language findings, documented limitations and a clear
+  separation between descriptive evidence and financial advice.
+- **Software quality:** configuration-driven Python package, locked dependencies, automated
+  tests and GitHub Actions CI.
+
+## Portfolio deliverables
+
+1. [Visual case study — presentation PDF](outputs/presentation/stablecoin_yield_presentation.pdf)
+2. [Editable exam presentation — PowerPoint](outputs/presentation/stablecoin_yield_presentation.pptx)
+3. [Presentation overview](outputs/presentation/stablecoin_yield_presentation_powerpoint_contact_sheet.png)
+4. [Full analytical report](outputs/report/stablecoin_yield_report.pdf)
+5. [Oral-defense notes](docs/oral_defense.md)
+6. [Data-quality report](outputs/quality/data_quality_report.md)
+7. [Figure registry](outputs/figures/figure_registry.csv)
+
+The accepted exam presentation is intentionally frozen. Its integrity record is documented in
 [docs/exam_presentation_integrity.md](docs/exam_presentation_integrity.md).
 
-## Analytical workflow
+## How the analysis works
 
 ```text
 Official APIs
@@ -53,9 +87,9 @@ Official APIs
     -> figures, report and presentation
 ```
 
-The pipeline is configuration-driven and keeps ingestion, transformation, analysis,
-visualization and reporting separate. The main analytical grain is one pool-day. High-yield
-episodes are contiguous runs above a declared threshold with explicit gap and censoring rules.
+The pipeline keeps ingestion, transformation, analysis, visualization and reporting separate.
+High-yield episodes are contiguous runs above a declared threshold with explicit rules for
+missing observations and right-censoring.
 
 ## Repository layout
 
@@ -68,12 +102,11 @@ src/           Installable Python package
 tests/         Unit, contract, integration and regression tests
 ```
 
-Raw API responses and row-level processed datasets are deliberately not distributed. Current
-provider terms restrict republication or redistribution. A local run creates them under
-`data/`, which is ignored by Git. See [NOTICE.md](NOTICE.md) and the
-[source registry](docs/source_registry.md).
+Raw API responses and row-level processed datasets are deliberately not distributed. A local
+run creates them under `data/`, which is ignored by Git. See [NOTICE.md](NOTICE.md) and the
+[source registry](docs/source_registry.md) for attribution and the public-data boundary.
 
-## Run locally
+## Reproduce locally
 
 Requirements: Python 3.11+ and [uv](https://docs.astral.sh/uv/).
 
@@ -95,13 +128,13 @@ Run the full 250-pool pipeline:
 uv run python scripts/reproduce_all.py --mode full
 ```
 
-Both commands access third-party APIs under the operator's own acceptance of their current
-terms and rate limits. Results can change as source data are revised. An optional CoinGecko key
-can be supplied through `COINGECKO_API_KEY`; it is sent as a request header and is never written
-to raw request metadata.
+Both commands access third-party APIs under the operator's acceptance of their current terms
+and rate limits. Results can change as source data are revised. An optional CoinGecko key can
+be supplied through `COINGECKO_API_KEY`; it is sent as a request header and is never written to
+raw request metadata.
 
-The PowerPoint builder depends on Codex's `@oai/artifact-tool` runtime and is therefore excluded
-from the portable default pipeline. Where that runtime is available, use:
+The PowerPoint builder depends on Codex's `@oai/artifact-tool` runtime and is excluded from the
+portable default pipeline. Where that runtime is available, use:
 
 ```bash
 uv run python scripts/reproduce_all.py --mode full --with-presentation
@@ -111,19 +144,24 @@ The committed exam deck remains available even when the optional builder is unav
 
 ## Reproducibility boundary
 
-The code and aggregate evidence are public-ready; the original provider payloads remain local.
-Consequently:
-
-- the committed report and presentation preserve the audited 8 July 2026 analysis;
-- a fresh run reproduces the method against data available at execution time;
-- exact byte-for-byte reconstruction of the historical raw snapshot requires the private local
-  archive and is not promised by the public repository.
+The committed report and presentation preserve the audited analysis through 8 July 2026. A
+fresh run reproduces the method against data available at execution time; byte-for-byte
+reconstruction of the private historical source snapshot is not promised by the public
+repository.
 
 ## Responsible interpretation
 
 APY is a quoted annualized value, not realized return. TVL change is an observed balance proxy,
 not direct net capital flow. The project does not fully measure smart-contract, counterparty,
 bridge, oracle, liquidity, legal or investor-specific risk. No output identifies a "best" pool.
+
+## About
+
+- **Author:** [Simone Ragusini](https://github.com/Laimon99)
+- **Context:** Master's-level academic project for a Data Visualization course
+- **Role:** Research framing, data pipeline, statistical analysis, visualization, reporting and QA
+- **Core stack:** Python, pandas, NumPy, Matplotlib, Seaborn, scikit-learn, lifelines, DuckDB,
+  ReportLab, PowerPoint, Pytest, Ruff and GitHub Actions
 
 ## Attribution and rights
 

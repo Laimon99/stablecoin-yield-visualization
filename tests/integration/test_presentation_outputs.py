@@ -13,6 +13,7 @@ EXPECTED_DECK_SHA256 = "0fff848c31bd67fdde2f30b66c4ab60741ad663f3da45a7a8ee20ced
 def test_presentation_deck_and_qa_outputs_exist() -> None:
     pptx = ROOT / "outputs" / "presentation" / "stablecoin_yield_presentation.pptx"
     pdf = ROOT / "outputs" / "presentation" / "stablecoin_yield_presentation.pdf"
+    cover = ROOT / "outputs" / "presentation" / "stablecoin_yield_presentation_cover.png"
     contact_sheet = (
         ROOT
         / "outputs"
@@ -22,6 +23,7 @@ def test_presentation_deck_and_qa_outputs_exist() -> None:
     assert pptx.stat().st_size > 0
     assert hashlib.sha256(pptx.read_bytes()).hexdigest() == EXPECTED_DECK_SHA256
     assert pdf.exists() and pdf.stat().st_size > 0
+    assert cover.exists() and cover.stat().st_size > 0
     assert len(PdfReader(pdf).pages) == 14
     assert contact_sheet.exists()
     with zipfile.ZipFile(pptx) as archive:

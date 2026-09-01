@@ -28,6 +28,8 @@ outputs/presentation/*.inspect.ndjson
 outputs/presentation/stablecoin_yield_slides.csv
 outputs/presentation/stablecoin_yield_slides.json
 outputs/presentation/stablecoin_yield_slides.md
+# Personalized submission copy; the portfolio keeps a generic public filename
+outputs/presentation/Simone_Ragusini_945119.pdf
 outputs/presentation/*_contact_sheet.png
 !outputs/presentation/stablecoin_yield_presentation_powerpoint_contact_sheet.png
 outputs/figures/*.pdf

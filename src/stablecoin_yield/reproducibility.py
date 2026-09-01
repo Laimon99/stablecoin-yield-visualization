@@ -96,6 +96,7 @@ def iter_release_files(root: Path) -> list[Path]:
         "outputs/presentation": [
             "stablecoin_yield_presentation.pptx",
             "stablecoin_yield_presentation.pdf",
+            "stablecoin_yield_presentation_cover.png",
             "stablecoin_yield_presentation_powerpoint_contact_sheet.png",
             "speaker_notes.md",
             "presentation_qa.md",

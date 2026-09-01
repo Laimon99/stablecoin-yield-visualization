@@ -1,8 +1,8 @@
 {
   "project": "stablecoin_yield",
   "mode": "full",
-  "created_at": "2026-08-30T10:00:33.919966Z",
-  "file_count": 122,
+  "created_at": "2026-09-01T13:44:07.727411Z",
+  "file_count": 123,
   "files": [
     {
       "path": ".env.example",
@@ -21,8 +21,8 @@
     },
     {
       "path": ".gitignore",
-      "size_bytes": 1105,
-      "checksum": "sha256:18292e5a53e433a785d3d7aa7253719c0b8adad3fe1a0ca12fa0be32b4ba283e"
+      "size_bytes": 1231,
+      "checksum": "sha256:b9cf2877f27573d26f4d4c270ba6ba992e66c8543e9bd90412b8f2022e525b2f"
     },
     {
       "path": "LICENSE",
@@ -41,8 +41,8 @@
     },
     {
       "path": "README.md",
-      "size_bytes": 5649,
-      "checksum": "sha256:514e78222344c2b8fc92667922a3b3fbd7695c47910282614fcbe770cf150849"
+      "size_bytes": 7618,
+      "checksum": "sha256:fd5ff309811f726c68200a7491edc0654ac42c3fc4431b97572bc23c8024e33d"
     },
     {
       "path": "config/metrics.yaml",
@@ -238,6 +238,11 @@
       "path": "outputs/presentation/stablecoin_yield_presentation.pptx",
       "size_bytes": 422514,
       "checksum": "sha256:0fff848c31bd67fdde2f30b66c4ab60741ad663f3da45a7a8ee20ced7bdd630f"
+    },
+    {
+      "path": "outputs/presentation/stablecoin_yield_presentation_cover.png",
+      "size_bytes": 146032,
+      "checksum": "sha256:42dd90d89c15e9fe579aeaaa39786a24f1011f4311031b47108ce72c210c8606"
     },
     {
       "path": "outputs/presentation/stablecoin_yield_presentation_powerpoint_contact_sheet.png",
@@ -481,8 +486,8 @@
     },
     {
       "path": "src/stablecoin_yield/reproducibility.py",
-      "size_bytes": 4067,
-      "checksum": "sha256:3c62bfef955eff9a5aef1ad8a7121789d475998117f09b181b67e0cb7ebeb103"
+      "size_bytes": 4122,
+      "checksum": "sha256:767883e653b3b34bbf6dd78ae63b21d730c82ff4e56f7a352ac3c6bd1eef1425"
     },
     {
       "path": "src/stablecoin_yield/source_verification.py",
@@ -551,8 +556,8 @@
     },
     {
       "path": "tests/integration/test_presentation_outputs.py",
-      "size_bytes": 1194,
-      "checksum": "sha256:f977c46d034cde860b36356d954fe3912e929eefa42865c6d945dd4add1221d1"
+      "size_bytes": 1339,
+      "checksum": "sha256:d03f3df1d93bf566b165d0b1c9349d664ac71dfb29bba6b1546ae0b672a3a611"
     },
     {
       "path": "tests/integration/test_report_generation.py",
