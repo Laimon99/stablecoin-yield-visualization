@@ -1,7 +1,7 @@
 {
   "project": "stablecoin_yield",
   "mode": "full",
-  "created_at": "2026-09-01T14:00:12.991580Z",
+  "created_at": "2026-09-01T14:01:51.224620Z",
   "file_count": 123,
   "files": [
     {
@@ -16,8 +16,8 @@
     },
     {
       "path": ".github/workflows/ci.yml",
-      "size_bytes": 664,
-      "checksum": "sha256:2800d0d2e328f69d413c58d133544e2396d8f4032ff5883bd918d3c813acb4a1"
+      "size_bytes": 672,
+      "checksum": "sha256:89fc63270089adbaf2438cdbc1ae95fcc7a73bbb41c94d02cdb0d5b177023bd7"
     },
     {
       "path": ".gitignore",
