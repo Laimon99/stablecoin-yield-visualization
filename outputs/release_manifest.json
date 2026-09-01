@@ -1,7 +1,7 @@
 {
   "project": "stablecoin_yield",
   "mode": "full",
-  "created_at": "2026-09-01T13:44:07.727411Z",
+  "created_at": "2026-09-01T14:00:12.991580Z",
   "file_count": 123,
   "files": [
     {
@@ -41,8 +41,8 @@
     },
     {
       "path": "README.md",
-      "size_bytes": 7618,
-      "checksum": "sha256:fd5ff309811f726c68200a7491edc0654ac42c3fc4431b97572bc23c8024e33d"
+      "size_bytes": 7512,
+      "checksum": "sha256:ecf2e99a0042e0838cb7ac495ffc8ebf4c8a2e504bf06792bd5b1749f6efd557"
     },
     {
       "path": "config/metrics.yaml",

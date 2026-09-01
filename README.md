@@ -9,10 +9,8 @@
 **Simone Ragusini** · Master's-level Data Visualization project · End-to-end analysis,
 visual storytelling and reproducible research pipeline
 
-[**View the 14-slide presentation (PDF)**](outputs/presentation/stablecoin_yield_presentation.pdf)
-· [PowerPoint](outputs/presentation/stablecoin_yield_presentation.pptx)
-· [Full report](outputs/report/stablecoin_yield_report.pdf)
-· [Methodology](docs/methodology.md)
+[**View the visual case study (PDF)**](outputs/presentation/stablecoin_yield_presentation.pdf)
+· [Read the full report](outputs/report/stablecoin_yield_report.pdf)
 
 [![Cover of The Price of Yield presentation](outputs/presentation/stablecoin_yield_presentation_cover.png)](outputs/presentation/stablecoin_yield_presentation.pdf)
 
