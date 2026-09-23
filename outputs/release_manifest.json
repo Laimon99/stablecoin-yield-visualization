@@ -1,8 +1,8 @@
 {
   "project": "stablecoin_yield",
   "mode": "full",
-  "created_at": "2026-09-23T17:45:34.334876Z",
-  "file_count": 147,
+  "created_at": "2026-09-23T18:32:23.963227Z",
+  "file_count": 162,
   "files": [
     {
       "path": ".env.example",
@@ -41,8 +41,8 @@
     },
     {
       "path": "README.md",
-      "size_bytes": 9682,
-      "checksum": "sha256:cfa5d29ecc4248d5e02bbf95774670bdfb7500e7ba519313dc06959f4c5fb3d0"
+      "size_bytes": 10811,
+      "checksum": "sha256:69fc9d7e1f6838482f7366a117d4019cff4d457906b07d21510e2f79c1258fc2"
     },
     {
       "path": "config/metrics.yaml",
@@ -145,14 +145,19 @@
       "checksum": "sha256:028b77fa042f58d61334daac45ca53fe69e8e6d06063bbf6825ccf9a7cbe5903"
     },
     {
+      "path": "docs/refinement.md",
+      "size_bytes": 5075,
+      "checksum": "sha256:1b2e3e03a3fb9131d60971e4539859293a948e918f5da6fe79f0ca51e251ea7a"
+    },
+    {
       "path": "docs/report_outline.md",
       "size_bytes": 381,
       "checksum": "sha256:bcda557ec1752d04ac127aa390593e65408d94c3ecb3b59e0d94861f31d0884b"
     },
     {
       "path": "docs/reproduction.md",
-      "size_bytes": 5048,
-      "checksum": "sha256:69d9937adc6252a55fd52112e4cc1da6d172cf231712fe858642626f10e856b4"
+      "size_bytes": 5199,
+      "checksum": "sha256:abc2383d8bdd6f5ba3e36dbb5743863de102164c973187a2a5e6443c8405fbae"
     },
     {
       "path": "docs/research_questions.md",
@@ -290,6 +295,56 @@
       "checksum": "sha256:02a36e7663794c16cddc14b8c7cfab1e325214388cc2691dbb5201828d96e3d1"
     },
     {
+      "path": "outputs/refinement/Simone_Ragusini_945119_Stablecoin_Yield_refined.pptx",
+      "size_bytes": 576639,
+      "checksum": "sha256:58e6ea60ff00ce5f826a074cd220f2c869f1b4c4e11a4d3cae5d98c49f0884d4"
+    },
+    {
+      "path": "outputs/refinement/apy_tvl_event_response.csv",
+      "size_bytes": 1381,
+      "checksum": "sha256:656b576b452d55b8c6d71c3d9e5cb475c88b6953435d402576ca1e8a3a8adcc0"
+    },
+    {
+      "path": "outputs/refinement/depeg_apy.png",
+      "size_bytes": 38181,
+      "checksum": "sha256:f1f742de8fdef578c8ee6f2113dff6d70916bffdcdf8c24155ed9b42acb77d02"
+    },
+    {
+      "path": "outputs/refinement/depeg_price.png",
+      "size_bytes": 47677,
+      "checksum": "sha256:a9f3a964fe3b49286df905e6d2d42712b5b819b0f57306e5eece1e5026e0d215"
+    },
+    {
+      "path": "outputs/refinement/event_apy.png",
+      "size_bytes": 36783,
+      "checksum": "sha256:f96fa911a25e815a40d9bd1cd62a4155c9985a428dad5480c83704e33992541f"
+    },
+    {
+      "path": "outputs/refinement/event_tvl.png",
+      "size_bytes": 44144,
+      "checksum": "sha256:c3dc22be336d0b20ef1c045ec70fc7dc381e2aa9c7a4a3df588113a829a77867"
+    },
+    {
+      "path": "outputs/refinement/mechanism_coverage.csv",
+      "size_bytes": 531,
+      "checksum": "sha256:90adbf5e785a3a4d94b6b18093c6e029bf64336da4d9208699efe8bd8ea819cb"
+    },
+    {
+      "path": "outputs/refinement/refinement_audit.json",
+      "size_bytes": 729,
+      "checksum": "sha256:74619247702089e71861af1f60ea2e88d41c15ebd26da880ef3720db02760b02"
+    },
+    {
+      "path": "outputs/refinement/report_summary.json",
+      "size_bytes": 70665,
+      "checksum": "sha256:0962a557db8766a726157644335cdc5fccd70faf05a31cdc4e495bdf1c943f95"
+    },
+    {
+      "path": "outputs/refinement/survival_static.png",
+      "size_bytes": 97074,
+      "checksum": "sha256:9878b03d6649fe024a594d0d80f6785ad7a0a864b56b95ab50dc4780682489b7"
+    },
+    {
       "path": "outputs/report/report_design_review.md",
       "size_bytes": 2035,
       "checksum": "sha256:0797132ae6705b4f2344ebbffa5f7bfaf37e58fecc1ebd2c98adf532c5b6892c"
@@ -385,6 +440,11 @@
       "checksum": "sha256:1cc07032991cc1f39788c4319954d9d78454e59ebeed2a4ebc245c93238ce40b"
     },
     {
+      "path": "outputs/submission/refined/Simone_Ragusini_945119.pdf",
+      "size_bytes": 683503,
+      "checksum": "sha256:004a8037e572c3c2594a856661d901dffa839d9db70aa782abc623bf8daae837"
+    },
+    {
       "path": "outputs/tables/apy_tvl_event_response.csv",
       "size_bytes": 1375,
       "checksum": "sha256:cfcd265a4fd920c5b7309a1eb9d3179fe0cd7110f7d7ec3d9c0143ee699b4656"
@@ -446,8 +506,8 @@
     },
     {
       "path": "scripts/build_revised_presentation.mjs",
-      "size_bytes": 68853,
-      "checksum": "sha256:098f3e78af84cce41a4ffcd28f95137a4132c319e568398270b4cd313d163939"
+      "size_bytes": 74241,
+      "checksum": "sha256:129587b6a62e58dba4305c5f173347886bd3d6d3294728530cf44e423bbb8ccf"
     },
     {
       "path": "scripts/build_revision_report.py",
@@ -465,9 +525,19 @@
       "checksum": "sha256:05575c4a00afed1dfda2afc4e123885fa4027f973761c101171c4f4403243820"
     },
     {
+      "path": "scripts/link_submission_pdf.py",
+      "size_bytes": 1771,
+      "checksum": "sha256:4b40924e2fb28a8763293328f75049a9a2300f1e501931bc45453f39143566eb"
+    },
+    {
       "path": "scripts/package_submission.py",
       "size_bytes": 1085,
       "checksum": "sha256:23cf9708919ffbd0a5aad6d1d3d4132ad0e0c1c5ad8032605c7e62946205d94d"
+    },
+    {
+      "path": "scripts/refine_submission.py",
+      "size_bytes": 6567,
+      "checksum": "sha256:b233804ed425f775fe8667933d8f9ba8cd9655f53a77a997a100155a19b6fb11"
     },
     {
       "path": "scripts/render_figures.py",
@@ -521,8 +591,8 @@
     },
     {
       "path": "src/stablecoin_yield/analysis/pipeline.py",
-      "size_bytes": 20340,
-      "checksum": "sha256:0ba52551a049dc5dc0348c3b5c626294cb43f092bfe380d795ff770fcde30285"
+      "size_bytes": 20447,
+      "checksum": "sha256:80312d49774e70b789aae8af315777a0666e5a5635424938eb8281de8ce2f6d9"
     },
     {
       "path": "src/stablecoin_yield/cli.py",
@@ -596,8 +666,8 @@
     },
     {
       "path": "src/stablecoin_yield/reproducibility.py",
-      "size_bytes": 4249,
-      "checksum": "sha256:63606139d9d6409df2cb9efbd53db16961206352518d4d33e896bf5b1258545f"
+      "size_bytes": 4368,
+      "checksum": "sha256:3d9fb6ec5bb3cfa70551aa030889743684d629e91d3d48d445b0992e58935af3"
     },
     {
       "path": "src/stablecoin_yield/source_verification.py",
@@ -641,8 +711,8 @@
     },
     {
       "path": "src/stablecoin_yield/visualization/published.py",
-      "size_bytes": 3516,
-      "checksum": "sha256:0550380f5ddd912719f6f84051353e887dce075889e486aad7ed63de0774f632"
+      "size_bytes": 3582,
+      "checksum": "sha256:88a7421b856e4af7c10c309bcedadd4bbd09cc5271c94686117a2b53232af8a7"
     },
     {
       "path": "tests/__init__.py",
@@ -708,6 +778,11 @@
       "path": "tests/unit/test_episodes.py",
       "size_bytes": 1631,
       "checksum": "sha256:693882378d5f7945ae59114fc7439ea749c2991ffb61899a0cd9ae8fb5c30b77"
+    },
+    {
+      "path": "tests/unit/test_event_calendar.py",
+      "size_bytes": 1004,
+      "checksum": "sha256:7635a3408854efc0b71bbec99a72dff2d99203aa8bce39b851463471230dfd2b"
     },
     {
       "path": "tests/unit/test_http.py",

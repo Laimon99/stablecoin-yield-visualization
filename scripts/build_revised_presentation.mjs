@@ -7,9 +7,10 @@ import { pathToFileURL } from "node:url";
 const W = 1280;
 const H = 720;
 const TOTAL_SLIDES = 17;
+const TEXT_ACCENT = {"#4F7CFF":"#3159C9", "#23C9D8":"#087A88", "#8B5CF6":"#6941C6", "#FF6B9D":"#B52159", "#F6B84B":"#925900", "#2BBBAD":"#08796F"};
 const COLORS = {
   ink: "#14213D",
-  muted: "#667085",
+  muted: "#475467",
   canvas: "#F6F8FF",
   surface: "#FFFFFF",
   line: "#DCE4F2",
@@ -120,8 +121,9 @@ async function main() {
   await fs.mkdir(previewDir, { recursive: true });
 
   const summary = JSON.parse(
-    await fs.readFile(path.join(root, "outputs", "report", "report_summary.json"), "utf8"),
+    await fs.readFile(path.join(root, "outputs", "refinement", "report_summary.json"), "utf8"),
   );
+  summary.refinement = JSON.parse(await fs.readFile(path.join(root, "outputs/refinement/refinement_audit.json"), "utf8"));
   const slides = JSON.parse(
     await fs.readFile(
       path.join(root, "config", "presentation_narrative.json"),
@@ -130,11 +132,11 @@ async function main() {
   );
   const chartAssets = await buildChartAssets(Presentation, summary, chartAssetDir);
   Object.assign(chartAssets, {
-    survival: path.join(root, "outputs/revision/survival_static.png"),
-    eventApy: path.join(root, "outputs/revision/event_apy.png"),
-    eventTvl: path.join(root, "outputs/revision/event_tvl.png"),
-    depegPrice: path.join(root, "outputs/revision/depeg_price.png"),
-    depegApy: path.join(root, "outputs/revision/depeg_apy.png"),
+    survival: path.join(root, "outputs/refinement/survival_static.png"),
+    eventApy: path.join(root, "outputs/refinement/event_apy.png"),
+    eventTvl: path.join(root, "outputs/refinement/event_tvl.png"),
+    depegPrice: path.join(root, "outputs/refinement/depeg_price.png"),
+    depegApy: path.join(root, "outputs/refinement/depeg_apy.png"),
   });
   const deck = Presentation.create({ slideSize: { width: W, height: H } });
 
@@ -163,10 +165,16 @@ async function main() {
   addJointScreen(deck, summary, slides[10], chartAssets.jointScreen);
   addRobustness(deck, summary, slides[11], chartAssets.robustness);
   addLimitations(deck, summary, slides[12]);
-  addStatisticalScope(deck, root);
+  addStatisticalScope(deck, root, summary.refinement);
   addToolsAndEvidence(deck);
   addReproduction(deck);
   addConclusion(deck, summary, slides[13]);
+  deck.slides.items[3].speakerNotes.textFrame.setText("High-yield and ranking definitions are unchanged. APY jumps require consecutive calendar dates, APY change >= 5 percentage points and APY >= 10%. Select the first three qualifying dates per pool. 450 corrected events from 174 pools. Joint-screen comparisons are inclusive (>=) on unrounded pool metrics. Source: scripts/refine_submission.py, outputs/refinement/report_summary.json.");
+  deck.slides.items[7].speakerNotes.textFrame.setText("Component medians exclude nulls and use available pool-days within each analytical type. Zero reward medians are observed values, not imputation. Coverage and counts by category: outputs/refinement/mechanism_coverage.csv. Separate component medians do not sum to total-APY median. Category composition is descriptive.");
+  deck.slides.items[8].speakerNotes.textFrame.setText("Corrected consecutive-calendar-day trigger. 450 events at day 0, 439 at day 30. The first three valid events per pool can overlap. Endpoint sensitivity retains 439 identical events with valid APY and TVL at days 0 and 30: 17.96% to 8.24%, median TVL ratio 1.692. No causal interpretation or independent-event inference. Sources: outputs/refinement/apy_tvl_event_response.csv, refinement_audit.json and scripts/refine_submission.py. Original historical deck used successive-observation changes and 453 events; 10 nonconsecutive selections are excluded, and later valid events can enter under the cap.");
+  deck.slides.items[10].speakerNotes.textFrame.setText("All three thresholds are inclusive. TVL threshold is USD 17,736,233. Bubble areas are proportional to median TVL up to the sample 95th percentile, with identical size mapping in both color groups. Numerical bubble key uses USD millions. Sources: outputs/refinement/report_summary.json, joint_screen section.");
+  deck.slides.items[13].speakerNotes.textFrame.setText("Original lifelines 95% log-log pointwise CI assumes independent episodes. Additional 95% percentile bootstrap resamples all 250 pools with replacement, preserving each selected pool's entire episode set. 2,000 replicates, numpy default_rng seed 945119. S(30)=6.2247%, pool-bootstrap CI 4.7611%-7.8564%. This conditions on the observed sample and episode definition. 70 episodes start at the pool's panel entry, and 56 end before gaps exceeding two calendar days. These bounds are descriptive, not an estimator of latent economic duration. Code and aggregate audit: scripts/refine_submission.py and outputs/refinement/refinement_audit.json.");
+  deck.slides.items[15].speakerNotes.textFrame.setText("Public repository: https://github.com/Laimon99/stablecoin-yield-visualization . The refined static charts and event headline checks use scripts/refine_submission.py and outputs/refinement aggregates. --refresh-local recomputes the corrected event selection, paired endpoint sensitivity and whole-pool bootstrap from the private historical panel. Plain offline reconstruction does not independently reproduce raw-to-aggregate computations or the bootstrap. uv.lock pins dependencies. Optional layout requires Artifact Tool and PowerPoint export. Code: MIT. Original presentation: CC BY 4.0. Provider data excluded; see NOTICE.md.");
 
   if (!args["skip-preview"]) for (const [index, slide] of deck.slides.items.entries()) {
     const stem = `slide-${String(index + 1).padStart(2, "0")}`;
@@ -447,8 +455,10 @@ function drawMechanismBars(slide, components, width) {
       addText(slide, reward.toFixed(2), barLeft + rewardWidth + 7, y + 21, 42, 21, {
         fontSize: 12,
         bold: true,
-        color: COLORS.coral,
+        color: "#B52159",
       });
+    } else {
+      addText(slide, item.median_reward_apy == null ? "N/A" : "0.00", barLeft + 7, y + 23, 48, 21, {fontSize: 13, bold: true, color: "#B52159"});
     }
   });
 }
@@ -636,7 +646,7 @@ function drawJointScreenAsset(slide, screen, width, height) {
   const drawSeries = (series, fill, line, baseRadius) => {
     series.x.forEach((xValue, index) => {
       const bubble = Math.min(Number(series.bubble[index]), bubbleCap);
-      const radius = baseRadius + 6 * Math.sqrt(Math.max(bubble, 0) / bubbleCap);
+      const radius = 13 * Math.sqrt(Math.max(bubble, 0) / bubbleCap);
       addChartPoint(slide, xScale(xValue), yScale(series.y[index]), radius, fill, line);
     });
   };
@@ -659,15 +669,21 @@ function drawJointScreenAsset(slide, screen, width, height) {
   addPill(slide, Math.min(thresholdX + 8, 180), 36, 152, 23, `POOL APY ${Number(screen.median_apy).toFixed(2)}%`, COLORS.coral, {
     fill: "#FFFFFF/94",
     textColor: COLORS.coral,
-    fontSize: 9,
+    fontSize: 11,
   });
   addPill(slide, width - 194, thresholdY - 28, 170, 23, `PERSISTENCE ${pct(screen.median_persistence)}`, COLORS.violet, {
     fill: "#FFFFFF/94",
     textColor: COLORS.violet,
-    fontSize: 9,
+    fontSize: 11,
   });
-  addText(slide, "Bubble area = median TVL, capped at p95", width - 250, height - 24, 238, 18, {
-    fontSize: 9,
+  addText(slide, "Bubble area: median TVL (USD millions)", 470, 152, 270, 22, {fontSize:12, bold:true, color:COLORS.ink});
+  [10, 100, bubbleCap].forEach((value, index) => {
+    const cx = 500 + index * 88;
+    addChartPoint(slide, cx, 192, 13 * Math.sqrt(value / bubbleCap), "#A8B4C7/66", COLORS.white);
+    addText(slide, index === 2 ? `${Math.round(value)}+` : String(value), cx-34, 214, 68, 22, {fontSize:12, alignment:"center", color:COLORS.ink});
+  });
+  addText(slide, "TVL sizes capped at p95", width - 250, height - 24, 238, 18, {
+    fontSize: 11,
     color: COLORS.muted,
     alignment: "right",
   });
@@ -1068,14 +1084,14 @@ function addMethods(deck, summary, slideData) {
     {
       number: "03",
       title: "APY-jump event",
-      body: "Daily APY increase of at least 5 percentage points and level at or above 10%; maximum 3 events per pool; window -7 to +30 days.",
+      body: "APY increase >= 5 pp on consecutive calendar days and APY >= 10%. First 3 events per pool. Window: -7 to +30 days.",
       boundary: `${summary.event_response.event_count_max} events at day 0; TVL remains observational.`,
       color: COLORS.amber,
     },
     {
       number: "04",
       title: "Joint threshold screen",
-      body: "Above the sample medians for pool-level APY, persistence and TVL at the same time.",
+      body: "At or above the sample medians for pool-level APY, persistence and TVL simultaneously.",
       boundary: "Descriptive three-threshold screen; not a Pareto frontier.",
       color: COLORS.teal,
     },
@@ -1092,7 +1108,7 @@ function addMethods(deck, summary, slideData) {
     addText(slide, item.boundary, 930, y - 2, 260, 56, {
       fontSize: 15,
       bold: true,
-      color: item.color,
+      color: TEXT_ACCENT[item.color] ?? item.color,
     });
     if (index < methodRows.length - 1) {
       addLine(slide, 72, y + 72, 1118, 1, COLORS.line);
@@ -1177,12 +1193,12 @@ function addEvidence(
   });
   addText(
     slide,
-    "Source: DeFiLlama, CoinGecko fallback checks and protocol documentation. APY is quoted, not realized return.",
+    "Sources: DeFiLlama, CoinGecko checks and protocol documentation. Quoted APY differs from realized return.",
     44,
     628,
     1060,
     22,
-    { fontSize: 11, color: COLORS.muted },
+    { fontSize: 14, color: COLORS.muted },
   );
 }
 
@@ -1208,7 +1224,8 @@ function addMechanisms(deck, summary, slideData, chartAsset) {
     fontSize: 23,
     bold: true,
   });
-  addImage(slide, chartAsset, 70, 248, 730, 326, "Median APY components by pool type");
+  addImage(slide, chartAsset, 70, 248, 730, 302, "Median APY components by pool type");
+  addText(slide, "Medians use available pool-days. Zero is observed, N/A means missing.\nComponent medians do not necessarily sum to median total APY.", 72, 564, 728, 42, {fontSize: 15, color: COLORS.muted});
 
   addPanel(slide, 860, 186, 374, 426, {
     fill: `linear(145deg, ${accent}/18 0%, #FFFFFF 78%)`,
@@ -1230,7 +1247,7 @@ function addMechanisms(deck, summary, slideData, chartAsset) {
   addMetricRow(slide, 888, 440, "61.6%", "Reward APY coverage", COLORS.coral);
   addText(
     slide,
-    "Reward-heavy pools and lending pools should not be read as the same yield mechanism.",
+    "Reward coverage varies by type: 15.9% to 91.9%. Missing values are excluded.",
     888,
     514,
     296,
@@ -1280,8 +1297,8 @@ function addEventResponse(deck, summary, slideData, apyChartAsset, tvlChartAsset
     textColor: "#A76500",
     fontSize: 13,
   });
-  addText(slide, "18.24% → 8.33%", 906, 266, 286, 48, {
-    fontSize: 30,
+  addText(slide, `${summary.event_response.points["0"].median_apy.toFixed(2)}% to ${summary.event_response.points["30"].median_apy.toFixed(2)}%`, 906, 266, 286, 48, {
+    fontSize: 27,
     bold: true,
     color: COLORS.ink,
   });
@@ -1290,19 +1307,19 @@ function addEventResponse(deck, summary, slideData, apyChartAsset, tvlChartAsset
     color: COLORS.muted,
   });
   addLine(slide, 906, 382, 282, 1, `${accent}/32`);
-  addMetricRow(slide, 908, 406, "453", "Events observed at day 0", COLORS.amber);
-  addMetricRow(slide, 908, 472, "1.69x", "Median normalized TVL at day 30", COLORS.teal);
+  addMetricRow(slide, 908, 390, String(summary.event_response.event_count_max), "Events at day 0", COLORS.amber);
+  addMetricRow(slide, 908, 449, `${summary.event_response.points["30"].median_tvl_index.toFixed(2)}x`, "Median TVL / day-0 TVL at day 30", COLORS.teal);
   addText(
     slide,
-    "Observed TVL response, not a causal capital-flow estimate.",
+    `Same-event check (n=${summary.refinement.paired_endpoint_count}): APY ${summary.refinement.paired_apy_0.toFixed(2)}% to ${summary.refinement.paired_apy_30.toFixed(2)}%, TVL ${summary.refinement.paired_tvl_30.toFixed(2)}x. Descriptive, non-causal.`,
     908,
-    548,
+    518,
     278,
-    48,
-    { fontSize: 16, bold: true, color: COLORS.coral },
+    83,
+    { fontSize: 16, bold: true, color: COLORS.ink },
   );
-  addText(slide, "Trigger: 1-day APY increase of at least 5 pp and APY at or above 10%; max 3 events per pool.", 44, 628, 1010, 22, {
-    fontSize: 11,
+  addText(slide, `Source: DeFiLlama. Consecutive-day jumps only. Events: ${summary.event_response.points["-7"].event_count} at -7d, ${summary.event_response.points["0"].event_count} at 0d, ${summary.event_response.points["30"].event_count} at +30d. Composition varies by day.`, 44, 628, 1190, 30, {
+    fontSize: 15,
     color: COLORS.muted,
   });
 }
@@ -1351,7 +1368,7 @@ function addDepeg(deck, summary, slideData, priceChartAsset, apyChartAsset) {
     fontSize: 34,
     bold: true,
   });
-  addText(slide, "Minimum observed USDC price", 906, 318, 282, 42, {
+  addText(slide, "Minimum daily observation in this window", 906, 318, 282, 42, {
     fontSize: 16,
     color: COLORS.muted,
   });
@@ -1364,10 +1381,10 @@ function addDepeg(deck, summary, slideData, priceChartAsset, apyChartAsset) {
     "Median APY, day -1 to day 0",
     COLORS.coral,
   );
-  addMetricRow(slide, 908, 480, `${summary.depeg.max_pool_count}`, "Exposed pools in the window", COLORS.blue);
+  addMetricRow(slide, 908, 480, "9-10", "Pools per day (9 at day 0)", COLORS.blue);
   addText(
     slide,
-    "One reviewed case study; descriptive context, not a general depeg causal estimate.",
+    "Changing pool composition. One descriptive case, without a control group.",
     908,
     548,
     278,
@@ -1408,10 +1425,12 @@ function addJointScreen(deck, summary, slideData, chartAsset) {
     fontSize: 18,
     color: COLORS.ink,
   });
-  addLine(slide, 68, 412, 258, 1, `${accent}/30`);
-  addMetricRow(slide, 70, 438, `${summary.joint_screen.median_apy.toFixed(2)}%`, "Pool-level median APY threshold", COLORS.coral);
-  addMetricRow(slide, 70, 496, pct(summary.joint_screen.median_persistence), "Persistence threshold", COLORS.violet);
-  addText(slide, "Bubble size = median TVL. This is not a Pareto frontier.", 70, 558, 250, 38, {
+  addLine(slide, 68, 399, 258, 1, `${accent}/30`);
+  [[`${summary.joint_screen.median_apy.toFixed(2)}%`, "Median APY"], [pct(summary.joint_screen.median_persistence), "Persistence"], [`$${(summary.joint_screen.median_tvl_usd/1e6).toFixed(2)}M`, "Median TVL"]].forEach(([value,label], i) => {
+    addText(slide, value, 70, 418+i*48, 128, 32, {fontSize: 25, bold:true, color:"#6941C6"});
+    addText(slide, label, 205, 424+i*48, 144, 30, {fontSize:17});
+  });
+  addText(slide, "Inclusive thresholds. Bubble area encodes TVL. Descriptive screen.", 70, 565, 260, 40, {
     fontSize: 14,
     bold: true,
     color: COLORS.muted,
@@ -1495,7 +1514,7 @@ function addRobustness(deck, summary, slideData, chartAsset) {
   addText(slide, "Filters change counts. Quoted APY remains distinct from realized return.", 862, 566, 330, 40, {
     fontSize: 14,
     bold: true,
-    color: COLORS.coral,
+    color: COLORS.ink,
   });
 }
 
@@ -1636,7 +1655,7 @@ function addConclusion(deck, summary, slideData) {
     const y = 260 + index * 82;
     addPill(slide, 548, y, 178, 30, item.label, item.accent, {
       fill: `${item.accent}/16`,
-      textColor: item.accent,
+      textColor: COLORS.white,
       fontSize: 12,
     });
     addText(slide, item.body, 746, y - 2, 432, 54, {
@@ -1675,23 +1694,23 @@ function addConclusion(deck, summary, slideData) {
   setSpeakerNotes(slide, slideData);
 }
 
-function addStatisticalScope(deck, root) {
+function addStatisticalScope(deck, root, refinement) {
   const audit = JSON.parse(fsSync.readFileSync(path.join(root, "outputs/revision/published_evidence_audit.json"), "utf8"));
   const slide = baseLightSlide(deck, 14, null, COLORS.violet, "UNCERTAINTY");
   addText(slide, "Precision has a defined scope", 44, 88, 1130, 60, {fontSize: 40, bold: true});
-  addText(slide, `Day-30 survival: ${(audit.survival_30_days*100).toFixed(2)}%`, 54, 182, 600, 65, {fontSize: 42, bold: true, color: COLORS.violet});
-  addText(slide, `95% pointwise interval: ${(audit.ci_30_lower*100).toFixed(2)}% to ${(audit.ci_30_upper*100).toFixed(2)}%`, 54, 255, 1080, 40, {fontSize: 27});
+  addText(slide, `Day-30 survival: ${(audit.survival_30_days*100).toFixed(2)}%`, 54, 182, 600, 65, {fontSize: 42, bold: true, color: "#6941C6"});
+  addText(slide, `95% pointwise CI: ${(audit.ci_30_lower*100).toFixed(2)}%-${(audit.ci_30_upper*100).toFixed(2)}%. Pool bootstrap: ${(refinement.pool_bootstrap_ci_30[0]*100).toFixed(2)}%-${(refinement.pool_bootstrap_ci_30[1]*100).toFixed(2)}%.`, 54, 255, 1150, 40, {fontSize: 25});
   const rows = [
-    ["Repeated episodes", "The interval treats episodes as independent. Dependence within pools can make it too narrow."],
-    ["Observation boundaries", "An episode may already be active when a pool enters the panel. Long gaps break observed runs."],
-    ["Sample selection", "The 180-observation entry rule excludes short histories. The 90-day check cannot recover excluded pools."],
+    ["Repeated episodes", "2,000 bootstrap resamples of whole pools preserve within-pool episode dependence. The interval is wider."],
+    ["Observation limits", `${refinement.left_boundary_episodes} episodes start at panel entry; ${refinement.gap_terminated_episodes} end at long gaps. Observed runs can differ from economic episodes.`],
+    ["Sample selection", "Selection excludes short histories. The 90-day check cannot recover them. Bootstrap does not correct selection bias."],
     ["Interpretation", "The evidence describes selected observed regimes. It does not estimate every pool's future yield."],
   ];
   rows.forEach(([label, body], i) => {
-    addText(slide, label, 54, 336+i*68, 270, 40, {fontSize: 21, bold:true, color:COLORS.violet});
+    addText(slide, label, 54, 336+i*68, 270, 40, {fontSize: 21, bold:true, color:"#6941C6"});
     addText(slide, body, 336, 336+i*68, 850, 54, {fontSize: 21});
   });
-  addText(slide, "Source: episode_survival.csv. lifelines Kaplan–Meier interval. Interactive companion shows the risk set and full tail.", 54, 630, 1140, 26, {fontSize: 14, color: COLORS.muted});
+  addText(slide, "Sources: episode_survival.csv and refinement_audit.json. Bootstrap: 250 pools, seed 945119, percentile interval.", 54, 630, 1140, 26, {fontSize: 14, color: COLORS.muted});
   slide.speakerNotes.textFrame.setText("The interval is the existing lifelines 95% pointwise log-log confidence interval. It is not simultaneous and is not clustered by pool. S(30) means probability of an observed episode lasting more than 30 calendar days. Left-boundary episodes can be incomplete, and the original specification treats long observation gaps as episode endings rather than known economic failures. Gap sensitivity is reassuring for the observed median but does not establish non-informative censoring. The history-90 check operates within a sample already selected for at least 180 provider observations. Sources: outputs/tables/episode_survival.csv, outputs/tables/robustness_checks.csv, src/stablecoin_yield/metrics/episodes.py, docs/methodology.md.");
 }
 
@@ -1701,7 +1720,7 @@ function addToolsAndEvidence(deck) {
   addText(slide, "MATPLOTLIB", 54, 186, 520, 40, {fontSize: 29, bold: true, color: COLORS.blue});
   addText(slide, "Static analytical figures", 54, 237, 520, 40, {fontSize: 25, bold: true});
   addText(slide, "This PDF uses Matplotlib for the survival curve (page 6) and daily event charts (pages 9–10).\n\nThe survival band shows uncertainty. Numerical time axes preserve the actual spacing of days.", 54, 295, 530, 196, {fontSize: 23});
-  addText(slide, "PLOTLY", 678, 186, 520, 40, {fontSize: 29, bold: true, color: COLORS.violet});
+  addText(slide, "PLOTLY", 678, 186, 520, 40, {fontSize: 29, bold: true, color: "#6941C6"});
   addText(slide, "Ranking heatmap in this PDF", 678, 237, 520, 40, {fontSize: 25, bold: true});
   addText(slide, "Page 7 contains a static export of the Plotly ranking heatmap, using the same published aggregate data.\n\nEvery cell includes its value. Reading the result requires no hover, live demo or additional file.", 678, 295, 520, 196, {fontSize: 23});
   addText(slide, "Analysis: Python, pandas, NumPy, lifelines, SciPy and scikit-learn", 54, 535, 1140, 35, {fontSize: 22, bold:true});
@@ -1716,11 +1735,11 @@ function addReproduction(deck) {
   const link = addText(slide, "github.com/Laimon99/stablecoin-yield-visualization", 54, 169, 1150, 42, {fontSize: 27, bold:true, color:"#176B87"});
   link.text = [{runs:[{run:"github.com/Laimon99/stablecoin-yield-visualization",link:{uri:"https://github.com/Laimon99/stablecoin-yield-visualization",isExternal:true}}]}];
   addText(slide, "1. Rebuild the published evidence", 54, 240, 1110, 38, {fontSize:25,bold:true});
-  addText(slide, "uv sync --frozen --extra dev\nuv run python scripts/reproduce_published.py", 80, 291, 1100, 64, {fontSize:22,typeface:"Consolas"});
-  addText(slide, "Published aggregate tables reproduce the interactive charts and check the headline values without API calls.", 80, 365, 1090, 54, {fontSize:21});
+  addText(slide, "uv sync --frozen --extra dev\nuv run python scripts/refine_submission.py", 80, 291, 1100, 64, {fontSize:22,typeface:"Consolas"});
+  addText(slide, "From the cloned repository: rebuild static charts and verify event headlines from published aggregates, without API calls.", 80, 365, 1090, 54, {fontSize:21});
   addText(slide, "2. Recollect and rerun the method", 54, 438, 1110, 36, {fontSize:25,bold:true});
   addText(slide, "uv run python scripts/reproduce_all.py --mode full", 80, 487, 1100, 35, {fontSize:22,typeface:"Consolas"});
-  addText(slide, "Live data can change. The private raw snapshot is not redistributed. PowerPoint rebuilding needs Artifact Tool.", 80, 535, 1090, 54, {fontSize:21});
+  addText(slide, "Live data can change. The historical raw snapshot is private. Bootstrap recalculation requires that snapshot. Deck: Artifact Tool.", 80, 535, 1090, 54, {fontSize:21});
   addText(slide, "© 2026 Simone Ragusini. Code: MIT. Original presentation and text: CC BY 4.0.", 54, 603, 1150, 28, {fontSize:19,bold:true});
   addText(slide, "DeFiLlama and CoinGecko data retain their own terms. Sources, exclusions and attribution: NOTICE.md.", 54, 639, 1150, 24, {fontSize:15,color:COLORS.muted});
   slide.speakerNotes.textFrame.setText("Repository URL: https://github.com/Laimon99/stablecoin-yield-visualization . Exact package versions: uv.lock. Published evidence reconstruction needs only the aggregate CSVs and report_summary.json. This is computational verification of published statistics, not independent reconstruction from the historical raw data. Full live collection can return a changed sample and provider revisions. PowerPoint rebuilding is optional and requires @oai/artifact-tool; rendered deliverables remain accessible without it. Code licence: MIT, https://opensource.org/license/mit . Original authored presentation/report/text: CC BY 4.0, https://creativecommons.org/licenses/by/4.0/ . Third-party data excluded. DeFiLlama: https://defillama.com/terms . CoinGecko: https://www.coingecko.com/en/api_terms .");
@@ -1772,7 +1791,7 @@ function addMetricRow(slide, left, top, value, label, accent) {
   addText(slide, value, left, top, 118, 34, {
     fontSize: 23,
     bold: true,
-    color: accent,
+    color: TEXT_ACCENT[accent] ?? accent,
   });
   addText(slide, label, left + 124, top + 2, 176, 38, {
     fontSize: 15,
@@ -1791,12 +1810,12 @@ function addCheckRow(slide, left, top, value, accent) {
 function addSourceNote(slide) {
   addText(
     slide,
-    "Sources: DeFiLlama, CoinGecko and selected official protocol documentation. APY is quoted, not realized return.",
+    "Sources: DeFiLlama, CoinGecko and protocol documentation. Quoted APY differs from realized return.",
     44,
     628,
     1080,
     22,
-    { fontSize: 11, color: COLORS.muted },
+    { fontSize: 14, color: COLORS.muted },
   );
 }
 
@@ -1858,7 +1877,7 @@ function addPill(slide, left, top, width, height, value, accent, options = {}) {
   return addText(slide, value, left + 12, top + 1, width - 24, height - 2, {
     fontSize: options.fontSize ?? 13,
     bold: true,
-    color: options.textColor ?? accent,
+    color: options.textColor === COLORS.white ? COLORS.white : (TEXT_ACCENT[options.textColor ?? accent] ?? options.textColor ?? accent),
     alignment: "center",
     verticalAlignment: "middle",
   });

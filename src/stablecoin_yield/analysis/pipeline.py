@@ -145,7 +145,8 @@ def build_frontier(pool_level: pd.DataFrame) -> pd.DataFrame:
 
 def apy_tvl_event_response(panel: pd.DataFrame) -> pd.DataFrame:
     data = panel.sort_values(["pool_id", "observed_date"]).copy()
-    data["apy_delta_1d"] = data.groupby("pool_id")["apy_total"].diff()
+    consecutive_day = data.groupby("pool_id")["observed_date"].diff().dt.days.eq(1)
+    data["apy_delta_1d"] = data.groupby("pool_id")["apy_total"].diff().where(consecutive_day)
     data["log_tvl"] = np.log(data["tvl_usd"].where(data["tvl_usd"] > 0))
     data["log_tvl_delta_1d"] = data.groupby("pool_id")["log_tvl"].diff()
     events = data[(data["apy_delta_1d"] >= 5) & (data["apy_total"] >= 10)].copy()

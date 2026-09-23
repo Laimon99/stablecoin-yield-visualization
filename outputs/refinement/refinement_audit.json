@@ -1,0 +1,20 @@
+{
+  "panel_sha256": "e508a08ac3806f8b4975844d1ad0c168c0bb3c15b28ba6608749576f3a39b7de",
+  "legacy_event_count": 453,
+  "legacy_nonconsecutive_events": 10,
+  "corrected_event_count": 450,
+  "corrected_event_pools": 174,
+  "paired_endpoint_count": 439,
+  "paired_apy_0": 17.96071,
+  "paired_apy_30": 8.24371,
+  "paired_tvl_30": 1.6920262046788384,
+  "pool_bootstrap_replicates": 2000,
+  "pool_bootstrap_seed": 945119,
+  "pool_bootstrap_ci_30": [
+    0.04761122733575173,
+    0.07856394653378455
+  ],
+  "left_boundary_episodes": 70,
+  "gap_terminated_episodes": 56,
+  "scope": "Pool bootstrap is conditional on the selected sample and original observed-run definition; it does not correct selection or observation-boundary bias."
+}

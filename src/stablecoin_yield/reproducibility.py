@@ -103,6 +103,8 @@ def iter_release_files(root: Path) -> list[Path]:
         ],
         "outputs/revision": ["*.pptx", "*.pdf", "*.html", "*.json", "*.md", "*.png"],
         "outputs/submission": ["*.pdf"],
+        "outputs/submission/refined": ["*.pdf"],
+        "outputs/refinement": ["*.pptx", "*.png", "*.json", "*.csv"],
     }
     files: list[Path] = []
     for relative in include_files:

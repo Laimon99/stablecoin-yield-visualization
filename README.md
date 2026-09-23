@@ -13,11 +13,30 @@ visual storytelling and reproducible research pipeline
 
 ## File to submit
 
-Submit **only [Simone_Ragusini_945119.pdf](outputs/submission/Simone_Ragusini_945119.pdf)**.
+Submit **only [Simone_Ragusini_945119.pdf](outputs/submission/refined/Simone_Ragusini_945119.pdf)**.
 This self-contained 17-page PDF includes the results, actual Matplotlib and
 Plotly figures, methods, limitations, author details, repository link and licences.
 The editable deck, HTML, extended report and ZIP below are supporting materials,
 not additional exam uploads. The evaluation is asynchronous.
+
+## Final refinement, September 2026
+
+The latest submission corrects the APY-jump trigger to require consecutive calendar
+observations: 450 events, median APY 18.09% at day 0 and 8.24% at day 30.
+A paired check on the same 439 events supports the direction of the result.
+The PDF now states every screening threshold, shows an accurate bubble-size key,
+distinguishes zero reward medians from missing data, embeds clickable links and
+reports a whole-pool bootstrap sensitivity interval for day-30 survival.
+
+- [Final editable deck](outputs/refinement/Simone_Ragusini_945119_Stablecoin_Yield_refined.pptx)
+- [Refinement methods and reproduction](docs/refinement.md)
+- [Corrected event aggregates](outputs/refinement/apy_tvl_event_response.csv)
+
+`uv run python scripts/refine_submission.py` reconstructs static charts from the
+new published aggregates. Recomputing the pool bootstrap and paired sensitivity
+requires the author's private historical panel and `--refresh-local`.
+The earlier PDFs and analytical reports below remain historical comparison
+artifacts: their 453-event result predates the calendar-day correction.
 
 ## Revised submission, September 2026
 

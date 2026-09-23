@@ -2,6 +2,9 @@
 
 Repository: https://github.com/Laimon99/stablecoin-yield-visualization
 
+For the **latest refined submission**, use [refinement.md](refinement.md).
+The commands below preserve the earlier aggregate evidence for comparison.
+
 ## 1. Published aggregates, no API access
 
 On Windows with Python 3.11 and an accented checkout path, run

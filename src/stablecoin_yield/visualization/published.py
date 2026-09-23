@@ -9,11 +9,12 @@ import pandas as pd
 from matplotlib.ticker import PercentFormatter
 
 
-def render_published_static(root: Path, output: Path) -> None:
+def render_published_static(root: Path, output: Path, *, events: pd.DataFrame | None = None) -> None:
     survival = pd.read_csv(root / 'outputs/tables/episode_survival.csv')
-    events = pd.read_csv(root / 'outputs/tables/apy_tvl_event_response.csv')
+    if events is None:
+        events = pd.read_csv(root / 'outputs/tables/apy_tvl_event_response.csv')
     depeg = pd.read_csv(root / 'outputs/tables/depeg_event_study.csv')
-    plt.rcParams.update({'font.family': 'DejaVu Sans', 'font.size': 10, 'text.color': '#14213D', 'axes.labelcolor': '#667085', 'xtick.color': '#667085', 'ytick.color': '#667085'})
+    plt.rcParams.update({'font.family': 'DejaVu Sans', 'font.size': 11, 'text.color': '#14213D', 'axes.labelcolor': '#475467', 'xtick.color': '#475467', 'ytick.color': '#475467'})
 
     def theme(ax):
         ax.spines[['top', 'right']].set_visible(False)
