@@ -1,8 +1,8 @@
 {
   "project": "stablecoin_yield",
   "mode": "full",
-  "created_at": "2026-09-23T18:32:23.963227Z",
-  "file_count": 162,
+  "created_at": "2026-09-23T19:18:31.049908Z",
+  "file_count": 164,
   "files": [
     {
       "path": ".env.example",
@@ -25,6 +25,11 @@
       "checksum": "sha256:4cc25581022bb14c5b624f43d3f1b3f49eea1253d1017dd5810a9594035d70fd"
     },
     {
+      "path": "AGENTS.md",
+      "size_bytes": 3378,
+      "checksum": "sha256:b06123b3b0d4f04a563ebde88ff09698ec750439691c33190efed6634eee779d"
+    },
+    {
       "path": "LICENSE",
       "size_bytes": 1727,
       "checksum": "sha256:e6dead9a8b8408105e120feb665f905e3a450b206394b03ca74d54a5b538ef92"
@@ -41,8 +46,8 @@
     },
     {
       "path": "README.md",
-      "size_bytes": 10811,
-      "checksum": "sha256:69fc9d7e1f6838482f7366a117d4019cff4d457906b07d21510e2f79c1258fc2"
+      "size_bytes": 8473,
+      "checksum": "sha256:bff56d28a5e117e7b7203716e7c7ab7f866e4294e8c699cd6aef036cb0ab5ef3"
     },
     {
       "path": "config/metrics.yaml",
@@ -98,6 +103,11 @@
       "path": "docs/exam_presentation_integrity.md",
       "size_bytes": 637,
       "checksum": "sha256:6d1c4fc7b334a656939d63c42552152904ed787c745b0c15a5a2befa81292cf4"
+    },
+    {
+      "path": "docs/exam_submission.md",
+      "size_bytes": 1754,
+      "checksum": "sha256:481541654c78e6fcd27ddaa06d63b25f9d290acb25e36d07d3ae88c60436671a"
     },
     {
       "path": "docs/feedback_response.md",
@@ -666,8 +676,8 @@
     },
     {
       "path": "src/stablecoin_yield/reproducibility.py",
-      "size_bytes": 4368,
-      "checksum": "sha256:3d9fb6ec5bb3cfa70551aa030889743684d629e91d3d48d445b0992e58935af3"
+      "size_bytes": 4389,
+      "checksum": "sha256:00a36ef7ba6dd8b665589e1095c181ade9980732ba4f56aeaa62794ce8ac45d8"
     },
     {
       "path": "src/stablecoin_yield/source_verification.py",

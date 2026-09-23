@@ -65,6 +65,7 @@ def iter_release_files(root: Path) -> list[Path]:
     ]
     include_files = [
         "README.md",
+        "AGENTS.md",
         "LICENSE",
         "NOTICE.md",
         "Makefile",

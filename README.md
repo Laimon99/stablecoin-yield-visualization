@@ -1,229 +1,128 @@
-# The Price of Yield
+# Stablecoin Yield
 
-[![CI](https://github.com/Laimon99/stablecoin-yield-visualization/actions/workflows/ci.yml/badge.svg)](https://github.com/Laimon99/stablecoin-yield-visualization/actions/workflows/ci.yml)
-![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-3776AB?logo=python&logoColor=white)
-![Status](https://img.shields.io/badge/status-portfolio%20release-176B87)
+A visual study of how long high stablecoin yields last, what produces them, and how deposited capital changes around yield spikes in decentralized finance.
 
-**A visual case study of persistence, mechanisms and observed TVL response in stablecoin DeFi.**
+**[View the final presentation (PDF)](outputs/submission/refined/Simone_Ragusini_945119.pdf)** · [Read the methodology](docs/refinement.md)
 
-**Simone Ragusini** · Master's-level Data Visualization project · End-to-end analysis,
-visual storytelling and reproducible research pipeline
+![Survival of 2,668 high-yield episodes: a steep early decline, 6.22% surviving beyond 30 days and a long tail. The band is the original 95% pointwise interval.](outputs/refinement/survival_static.png)
 
-**Student ID:** 945119 · **Email:** s.ragusini@campus.unimib.it
-
-## File to submit
-
-Submit **only [Simone_Ragusini_945119.pdf](outputs/submission/refined/Simone_Ragusini_945119.pdf)**.
-This self-contained 17-page PDF includes the results, actual Matplotlib and
-Plotly figures, methods, limitations, author details, repository link and licences.
-The editable deck, HTML, extended report and ZIP below are supporting materials,
-not additional exam uploads. The evaluation is asynchronous.
-
-## Final refinement, September 2026
-
-The latest submission corrects the APY-jump trigger to require consecutive calendar
-observations: 450 events, median APY 18.09% at day 0 and 8.24% at day 30.
-A paired check on the same 439 events supports the direction of the result.
-The PDF now states every screening threshold, shows an accurate bubble-size key,
-distinguishes zero reward medians from missing data, embeds clickable links and
-reports a whole-pool bootstrap sensitivity interval for day-30 survival.
-
-- [Final editable deck](outputs/refinement/Simone_Ragusini_945119_Stablecoin_Yield_refined.pptx)
-- [Refinement methods and reproduction](docs/refinement.md)
-- [Corrected event aggregates](outputs/refinement/apy_tvl_event_response.csv)
-
-`uv run python scripts/refine_submission.py` reconstructs static charts from the
-new published aggregates. Recomputing the pool bootstrap and paired sensitivity
-requires the author's private historical panel and `--refresh-local`.
-The earlier PDFs and analytical reports below remain historical comparison
-artifacts: their 453-event result predates the calendar-day correction.
-
-## Revised submission, September 2026
-
-The revision responds to the instructor's feedback with explicit authorship,
-two demonstrated visualization tools, a linked repository, reproducible aggregate
-evidence, licences and more precise statistical interpretation.
-
-- [Revised presentation PDF (17 slides)](outputs/revision/Simone_Ragusini_945119_Stablecoin_Yield.pdf)
-- [Revised editable PowerPoint](outputs/revision/Simone_Ragusini_945119_Stablecoin_Yield.pptx)
-- [Revised analytical report (20 pages)](outputs/revision/Simone_Ragusini_945119_Report.pdf)
-- [Offline interactive Plotly companion](outputs/revision/stablecoin_yield_interactive.html) (download and open in a browser)
-- [Response to every feedback point](docs/feedback_response.md)
-- [Reproduction guide](docs/reproduction.md) and [oral-defense guide](docs/oral_defense_revision.md)
-
-**Two visualization tools:** Matplotlib for the static analytical figures and
-Plotly for interactive survival, churn and sensitivity charts. Seaborn supports
-Matplotlib; Artifact Tool assembles the PowerPoint.
-
-Reproduce the published aggregate evidence without provider API access:
-
-```sh
-uv sync --frozen --extra dev
-uv run python scripts/reproduce_published.py
-```
-
-This checks headline consistency and creates the self-contained HTML companion
-and a JSON audit with source hashes and actual library versions. It does not
-claim reconstruction of the undistributed historical raw data. For the full
-method against live APIs, see the separate instructions below.
-
-The links below retain the original July analytical deliverables for comparison.
-
-[**View the visual case study (PDF)**](outputs/presentation/stablecoin_yield_presentation.pdf)
-· [Read the full report](outputs/report/stablecoin_yield_report.pdf)
-
-[![Cover of The Price of Yield presentation](outputs/presentation/stablecoin_yield_presentation_cover.png)](outputs/presentation/stablecoin_yield_presentation.pdf)
+**The median observed episode at or above 10% annualized yield lasts two days.** Duration, yield mechanism and pool capacity give a quoted rate the context it needs.
 
 ## The project in 30 seconds
 
-DeFi interfaces often reduce yield to one annualized percentage. I analyzed **250 stablecoin
-pools and 137,095 daily observations** to test whether high quoted yields persist, what produces
-them and how they relate to deposited capital and stablecoin stress.
+- **Question:** Does a high quoted yield persist, and what context is lost in a single percentage?
+- **Evidence:** 250 stablecoin pools and 137,095 pool-days, from 11 February 2022 to 8 July 2026.
+- **Output:** A 17-page visual case study, supporting aggregate evidence and a reproducible Python pipeline.
+- **Purpose:** Explain yield trade-offs and uncertainty without turning descriptive results into investment recommendations.
 
-> **Headline finding:** high yield is common in snapshots, but persistent high yield with
-> capacity and interpretable context is much rarer.
+**APY** is a quoted annualized yield, not necessarily a realized return. **TVL** is the USD value deposited in a pool. A **pool-day** is one pool observed on one calendar day.
 
-The project turns that question into a reproducible visual analysis rather than a pool ranking
-or investment recommendation.
+## What this project demonstrates
 
-### Plain-English glossary
-
-- **APY:** the annualized yield quoted by a protocol, not necessarily the return an investor realizes.
-- **TVL:** the value deposited in a protocol, used here as a capacity and activity proxy.
-- **Pool-day:** one liquidity or lending pool observed on one calendar day.
+- **Statistical reasoning:** episode survival, ranking churn, event studies and sensitivity checks with explicit denominators and limitations.
+- **Visual communication:** a narrative presentation using actual Matplotlib and Plotly figures, supported by an interactive companion.
+- **Reproducible engineering:** API ingestion, checksummed source records, locked dependencies, automated checks and documented public-data boundaries.
+- **Research communication:** traceable findings, a source registry and a clear distinction between observed associations and causal claims.
 
 ## Key findings
 
-- The median contiguous episode above 10% quoted APY lasts **2 days**.
-- Ranking churn rises from **13.5% after 1 day** to **33.3% after 30 days**.
-- Only **38 of 250 pools (15.2%)** clear the sample medians for APY, persistence and TVL
-  simultaneously.
-- APY and TVL move on different clocks; the event study is descriptive and does not identify
-  wallet-level capital flows.
-- Reward composition, pool type and peg context materially change how a quoted APY should be
-  interpreted.
+| Lens | Sample result | Interpretation |
+| --- | --- | --- |
+| Yield distribution | Median APY **4.29%**, mean **8.03%** | A single average masks a skewed distribution. |
+| Persistence | Median episode **2 days**; estimated survival beyond day 30 **6.22%** | Most observed high-yield episodes are short. |
+| Ranking churn | **13.5%** after one day, **33.3%** after 30 days | A snapshot ranking becomes less stable over time. |
+| Yield spikes | Across **450 events**, median APY moves from **18.09%** at day 0 to **8.24%** at day 30 | The event profile is descriptive; the observed cohort varies by day. |
+| Joint screen | **38/250 pools (15.2%)** meet the sample-median APY, persistence and TVL thresholds together | Yield, duration and capacity need to be considered jointly. |
 
-These results are sample-specific and non-causal. The project makes its assumptions and
-limitations explicit rather than presenting a hidden safety score.
+The paired endpoint check retains the same 439 events and supports the direction of the APY result. The presentation and [methodology](docs/refinement.md) report the sample sizes, inclusive screening thresholds and observation rules.
 
-![Joint screen of APY, persistence and TVL](outputs/figures/fig_10_hero_yield_frontier.png)
+## Verification and limitations
 
-## What this portfolio project demonstrates
+The analysis uses DeFiLlama and CoinGecko data in a selected, unbalanced panel. Results describe this sample and observation window.
 
-- **Data engineering:** API ingestion, checksummed raw envelopes, canonical schemas and entity
-  resolution.
-- **Statistical analysis:** episode survival, ranking churn, event studies, clustering and
-  robustness checks.
-- **Data visualization:** ten publication-ready figures, a 14-slide narrative deck and a
-  16-page analytical report.
-- **Research communication:** plain-language findings, documented limitations and a clear
-  separation between descriptive evidence and financial advice.
-- **Software quality:** configuration-driven Python package, locked dependencies, automated
-  tests and GitHub Actions CI.
+- **Uncertainty:** day-30 survival has an original 95% pointwise interval of 5.34%-7.19%; a whole-pool bootstrap gives 4.76%-7.86%. Neither corrects selection bias or observation boundaries.
+- **Interpretation:** quoted APY is not realized return; TVL changes are not direct wallet-level net flows. Event profiles do not establish causality.
+- **Risk coverage:** the project does not fully estimate smart-contract, counterparty, bridge, oracle or liquidity risk.
+- **Reproduction:** public aggregates reconstruct the published static evidence. Recomputing the historical panel, paired diagnostics and bootstrap requires the author's undistributed historical data.
 
-## Portfolio deliverables
+Inspect the [refinement audit](outputs/refinement/refinement_audit.json), [data-quality report](outputs/quality/data_quality_report.md) and [source registry](docs/source_registry.md).
 
-1. [Visual case study — presentation PDF](outputs/presentation/stablecoin_yield_presentation.pdf)
-2. [Editable exam presentation — PowerPoint](outputs/presentation/stablecoin_yield_presentation.pptx)
-3. [Presentation overview](outputs/presentation/stablecoin_yield_presentation_powerpoint_contact_sheet.png)
-4. [Full analytical report](outputs/report/stablecoin_yield_report.pdf)
-5. [Oral-defense notes](docs/oral_defense.md)
-6. [Data-quality report](outputs/quality/data_quality_report.md)
-7. [Figure registry](outputs/figures/figure_registry.csv)
+[![CI](https://github.com/Laimon99/stablecoin-yield-visualization/actions/workflows/ci.yml/badge.svg)](https://github.com/Laimon99/stablecoin-yield-visualization/actions/workflows/ci.yml)
 
-The original 14-slide exam presentation is retained as a historical version. Its integrity record is documented in
-[docs/exam_presentation_integrity.md](docs/exam_presentation_integrity.md).
+CI checks linting and automated tests; it does not certify the economic interpretation of the results.
 
-## How the analysis works
+## How it works
 
-```text
-Official APIs
-    -> checksummed request envelopes
-    -> canonical pool and pool-day tables
-    -> quality gates and entity resolution
-    -> episode, churn, event and robustness analyses
-    -> figures, report and presentation
-```
+Official APIs feed checksummed request records, canonical pool and pool-day tables, quality checks, statistical analyses and finally figures and documents. Ingestion, analysis and presentation are separate stages.
 
-The pipeline keeps ingestion, transformation, analysis, visualization and reporting separate.
-High-yield episodes are contiguous runs above a declared threshold with explicit rules for
-missing observations and right-censoring.
+**Core stack:** Python, pandas, NumPy, lifelines, scikit-learn and DuckDB for analysis; Matplotlib, Seaborn and Plotly for visualization; ReportLab and an optional Artifact Tool builder for documents; Pytest, Ruff and GitHub Actions for checks.
 
-## Repository layout
-
-```text
-config/        Source, metric and visualization configuration
-docs/          Methodology, source register, decisions, QA and defense notes
-outputs/       Curated aggregate tables, figures, report and exam presentation
-scripts/       Reproducible command-line pipeline stages
-src/           Installable Python package
-tests/         Unit, contract, integration and regression tests
-```
-
-Raw API responses and row-level processed datasets are deliberately not distributed. A local
-run creates them under `data/`, which is ignored by Git. See [NOTICE.md](NOTICE.md) and the
-[source registry](docs/source_registry.md) for attribution and the public-data boundary.
-
-## Reproduce locally
+## Reproduce the published evidence
 
 Requirements: Python 3.11+ and [uv](https://docs.astral.sh/uv/).
 
-```bash
+```sh
+git clone https://github.com/Laimon99/stablecoin-yield-visualization.git
+cd stablecoin-yield-visualization
 uv sync --frozen --extra dev
+uv run python scripts/refine_submission.py
+```
+
+The final command checks event headlines against the published table and rebuilds static charts without API calls. Add `--output-dir PATH` to write the graphics elsewhere. See the [reproduction details](docs/refinement.md#public-aggregate-reconstruction).
+
+<details>
+<summary>Quality checks, live data and environment notes</summary>
+
+```sh
 uv run ruff check src scripts tests
 uv run pytest
 ```
 
-Run a smaller live-data pipeline:
+To run the full method against live APIs, use a separate checkout:
 
-```bash
-uv run python scripts/reproduce_all.py --mode sample
-```
-
-Run the full 250-pool pipeline:
-
-```bash
+```sh
 uv run python scripts/reproduce_all.py --mode full
 ```
 
-Both commands access third-party APIs under the operator's acceptance of their current terms
-and rate limits. Results can change as source data are revised. An optional CoinGecko key can
-be supplied through `COINGECKO_API_KEY`; it is sent as a request header and is never written to
-raw request metadata.
+This writes new outputs and results can change with provider data. Provider terms and rate limits apply; see [NOTICE.md](NOTICE.md). Raw and row-level datasets stay under the ignored `data/` directory. An optional CoinGecko key uses the `COINGECKO_API_KEY` environment variable.
 
-The PowerPoint builder depends on Codex's `@oai/artifact-tool` runtime and is excluded from the
-portable default pipeline. Where that runtime is available, use:
+On Windows with Python 3.11 and accented checkout paths, use `$env:PYTHONPATH = (Resolve-Path src).Path` if editable imports fail.
 
-```bash
-uv run python scripts/reproduce_all.py --mode full --with-presentation
-```
+The optional PowerPoint builder requires Codex's Artifact Tool runtime. See [presentation rebuilding](docs/refinement.md#presentation-rebuilding); the committed deck remains available without that runtime.
 
-The committed exam deck remains available even when the optional builder is unavailable.
+</details>
 
-## Reproducibility boundary
+## Supporting material
 
-The committed report and presentation preserve the audited analysis through 8 July 2026. A
-fresh run reproduces the method against data available at execution time; byte-for-byte
-reconstruction of the private historical source snapshot is not promised by the public
-repository.
+| Artifact | Purpose |
+| --- | --- |
+| [Editable final PowerPoint](outputs/refinement/Simone_Ragusini_945119_Stablecoin_Yield_refined.pptx) | Source deck for the final 17-page presentation |
+| [Interactive Plotly companion](outputs/revision/stablecoin_yield_interactive.html) | Survival, churn and threshold sensitivity; download and open locally |
+| [Corrected event aggregates](outputs/refinement/apy_tvl_event_response.csv) | Daily APY and TVL event profiles |
+| [Mechanism coverage](outputs/refinement/mechanism_coverage.csv) | Available observations for yield components |
 
-## Responsible interpretation
+## Exam snapshot and version history
 
-APY is a quoted annualized value, not realized return. TVL change is an observed balance proxy,
-not direct net capital flow. The project does not fully measure smart-contract, counterparty,
-bridge, oracle, liquidity, legal or investor-specific risk. No output identifies a "best" pool.
+The [exam-2026-09-23 release](https://github.com/Laimon99/stablecoin-yield-visualization/releases/tag/exam-2026-09-23) records the final exam PDF and its source commit. Later portfolio updates remain separate from that snapshot. See [artifact identity and checksums](docs/exam_submission.md).
 
-## About
+<details>
+<summary>Earlier presentations and reports</summary>
 
-- **Author:** [Simone Ragusini](https://github.com/Laimon99)
-- **Context:** Master's-level academic project for a Data Visualization course
-- **Role:** Research framing, data pipeline, statistical analysis, visualization, reporting and QA
-- **Core stack:** Python, pandas, NumPy, Matplotlib, Seaborn, scikit-learn, lifelines, DuckDB,
-  Plotly, ReportLab, PowerPoint, Pytest, Ruff and GitHub Actions
+These are historical comparison artifacts. Their 453-event analysis predates the consecutive-calendar-day correction to 450 events; use the final presentation for current findings.
 
-## Attribution and rights
+- [First revised presentation, 17 pages](outputs/revision/Simone_Ragusini_945119_Stablecoin_Yield.pdf)
+- [Revised analytical report, 20 pages](outputs/revision/Simone_Ragusini_945119_Report.pdf)
+- [Original presentation, 14 pages](outputs/presentation/stablecoin_yield_presentation.pdf)
+- [Original analytical report, 16 pages](outputs/report/stablecoin_yield_report.pdf)
+- [Response to instructor feedback](docs/feedback_response.md)
+- [Original presentation integrity record](docs/exam_presentation_integrity.md)
 
-The analysis uses official DeFiLlama and CoinGecko APIs. Provider attribution and current terms
-are recorded in [NOTICE.md](NOTICE.md). Original code uses the MIT License; original
-presentation, report, documentation and authored visual expression use CC BY 4.0.
-See [LICENSE](LICENSE) for scope. No third-party data rights are granted.
+</details>
+
+## Author, status and rights
+
+**[Simone Ragusini](https://github.com/Laimon99)** · Student ID 945119 · s.ragusini@campus.unimib.it
+
+Master's-level Data Visualization project covering research framing, data engineering, statistical analysis, visualization and reporting. An educational portfolio project, not an investment advisory service.
+
+Original code is MIT-licensed; original presentation, report, documentation and authored visual expression use CC BY 4.0. Third-party data retain their own terms. See [LICENSE](LICENSE) and [NOTICE.md](NOTICE.md).
