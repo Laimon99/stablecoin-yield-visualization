@@ -1,0 +1,114 @@
+[
+  {
+    "slide": 1,
+    "title": "Stablecoin Yield",
+    "question": "What makes stablecoin APY interpretable?",
+    "takeaway": "Yield needs duration, capacity, mechanism and peg context before comparison.",
+    "visual": "",
+    "speaker_note": "Open with the precise scope: persistence, mechanisms and observed TVL response. State that this is not a protocol-risk model or a recommendation list."
+  },
+  {
+    "slide": 2,
+    "title": "Research Frame",
+    "question": "What did the project ask?",
+    "takeaway": "Five questions connect persistence, mechanisms, ranking stability, peg stress and a transparent joint screen.",
+    "visual": "",
+    "speaker_note": "State the five research questions and the decision to use pool-day as the analytical grain."
+  },
+  {
+    "slide": 3,
+    "title": "A Deliberate Analytical Sample",
+    "question": "What was observed, and how were pools selected?",
+    "takeaway": "The unbalanced panel spans 2022-02-11 to 2026-07-08 and retains observed entry and exit.",
+    "visual": "",
+    "speaker_note": "Explain the eligibility rules: stablecoin flag, at least USD 1 million TVL and 180 history observations. The 250-pool cap combines 70 percent highest TVL with the remaining capacity highest APY."
+  },
+  {
+    "slide": 4,
+    "title": "Auditable Definitions",
+    "question": "Exactly how are episodes, churn, events and the joint screen defined?",
+    "takeaway": "Every thresholded result has an explicit formula, window and censoring rule.",
+    "visual": "",
+    "speaker_note": "Define the main 10% episode specification, one-missing-day tolerance, right censoring, churn formula, APY-jump event trigger and the three-median joint screen. Emphasize that the screen is not a Pareto frontier."
+  },
+  {
+    "slide": 5,
+    "title": "APY Is Heavy Tailed",
+    "question": "Why are headline APY values hard to compare?",
+    "takeaway": "Pool-day median APY is 4.29% while the pool-day mean is 8.03%.",
+    "visual": "outputs/figures/fig_02_apy_distribution.png",
+    "speaker_note": "Use the p99 display cap and preserved extreme-value flags to justify robust summaries without deleting source observations."
+  },
+  {
+    "slide": 6,
+    "title": "High Yield Is Usually Short",
+    "question": "How long do episodes at or above 10% APY last?",
+    "takeaway": "The median high-yield episode lasts 2 days; only 6.2% remain after 30 days.",
+    "visual": "outputs/figures/fig_03_episode_survival.png",
+    "speaker_note": "Explain Kaplan-Meier survival and right censoring. Report 2,668 episodes, median 2 days, p90 16 days and 1.2 percent censored."
+  },
+  {
+    "slide": 7,
+    "title": "Rankings Lose Members Over Time",
+    "question": "Do top-yield pools stay at the top?",
+    "takeaway": "Weighted by valid date × top-k comparisons, churn rises from 13.5% after 1 day to 33.3% after 30 days.",
+    "visual": "outputs/figures/fig_04_ranking_churn.png",
+    "speaker_note": "Define churn as one minus top-k retention. The heatmap cells are separate top-10 and top-20 date means. The text summary pools all valid observed-date/top-k comparisons, so it is weighted by their counts: 2,669 at 1 day, 2,657 at 7 days and 2,612 at 30 days."
+  },
+  {
+    "slide": 8,
+    "title": "Mechanism Changes What APY Means",
+    "question": "What sits behind headline APY?",
+    "takeaway": "Base and reward components separate lending yield from incentive dependence, although reward coverage is partial.",
+    "visual": "",
+    "speaker_note": "Use the chart. Contrast incentive-driven pools with base-yield categories and report 90.3 percent base coverage versus 61.6 percent reward coverage."
+  },
+  {
+    "slide": 9,
+    "title": "APY Declines While Observed TVL Rises",
+    "question": "What happens after an observed APY jump?",
+    "takeaway": "Across 453 events, median APY peaks at 18.24% on day 0 and falls to 8.33% by day 30, while median normalized TVL reaches 1.69.",
+    "visual": "",
+    "speaker_note": "Describe the event trigger and show the four event-time points. State immediately that TVL is an observational balance-sheet proxy, not a causal wallet-flow estimate."
+  },
+  {
+    "slide": 10,
+    "title": "Peg Stress Changes the Yield Denominator",
+    "question": "What changed during the March 2023 USDC depeg?",
+    "takeaway": "USDC fell to 0.9611 USD while median exposed-pool APY rose by 1.38 percentage points from day -1 to day 0.",
+    "visual": "",
+    "speaker_note": "Report the selected reviewed event, the 10-pool exposure window and the descriptive APY change. Do not generalize one event into a causal risk estimate."
+  },
+  {
+    "slide": 11,
+    "title": "Few Pools Clear All Three Thresholds",
+    "question": "Which pools combine APY, persistence and capacity?",
+    "takeaway": "15.2% of pools are above the sample medians for APY, persistence and TVL simultaneously.",
+    "visual": "",
+    "speaker_note": "Call this a joint threshold screen, not a Pareto frontier. Bubble size encodes median TVL; highlighted points clear all three medians."
+  },
+  {
+    "slide": 12,
+    "title": "The Main Duration Result Is Robust",
+    "question": "Does the short-episode conclusion depend on one threshold?",
+    "takeaway": "Median episode duration remains 2 days at 5%, 10% and 20% APY thresholds, with sensitivity checks for TVL, history, gaps and winsorization.",
+    "visual": "",
+    "speaker_note": "Show that episode counts change with the threshold but the median duration does not. Mention all five robustness families materialized by the pipeline."
+  },
+  {
+    "slide": 13,
+    "title": "This Is Market Context, Not Total Risk",
+    "question": "What does the project deliberately not claim?",
+    "takeaway": "The analysis measures quoted yield, persistence, TVL, rewards and peg context, not smart-contract or counterparty safety.",
+    "visual": "",
+    "speaker_note": "Name the unmeasured dimensions: smart-contract, counterparty, bridge, chain, oracle, liquidity and collateral quality. This boundary is why the project avoids recommendations."
+  },
+  {
+    "slide": 14,
+    "title": "Conclusion",
+    "question": "What should the viewer remember?",
+    "takeaway": "Stablecoin yield is best shown as regimes and trade-offs, not as a static ranked table.",
+    "visual": "",
+    "speaker_note": "Close with the one-sentence defense, reproducibility and the no-financial-advice boundary."
+  }
+]

@@ -14,6 +14,7 @@ htmlcov/
 # Provider data and generated local datasets
 data/
 tmp/
+outputs/delivery/
 
 # Private course materials kept locally, outside the portfolio release
 docs/Project example/

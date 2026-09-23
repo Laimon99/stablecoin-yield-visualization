@@ -3,6 +3,7 @@ name = "stablecoin-yield"
 version = "1.0.0"
 description = "Reproducible data visualization project on stablecoin DeFi yield persistence, mechanisms and observed TVL response."
 readme = "README.md"
+authors = [{name = "Simone Ragusini", email = "s.ragusini@campus.unimib.it"}]
 requires-python = ">=3.11"
 dependencies = [
     "duckdb>=1.0.0",

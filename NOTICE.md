@@ -1,5 +1,15 @@
 # Data Sources, Attribution and Redistribution Notice
 
+## Original work and dependencies
+
+Copyright 2026 Simone Ragusini. Original code, configuration and tests use the
+MIT License. Original presentation, report, documentation and authored visual
+expression use CC BY 4.0, https://creativecommons.org/licenses/by/4.0/ . Attribute
+Simone Ragusini, Stablecoin Yield (2026), link the repository and licence, and
+identify changes. See LICENSE for scope. These grants exclude provider data.
+The offline companion embeds Plotly.js with its existing MIT copyright notice;
+third-party dependencies retain their respective licences.
+
 This repository contains original analysis, source code and aggregate visual outputs. It does
 not distribute the raw third-party API responses or row-level canonical datasets used for the
 frozen exam analysis.

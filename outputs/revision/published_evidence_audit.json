@@ -1,0 +1,58 @@
+{
+  "pool_count": 250,
+  "pool_days": 137095,
+  "episodes": 2668,
+  "median_duration_days": 2.0,
+  "survival_30_days": 0.0622469663966355,
+  "ci_30_lower": 0.0534344716697398,
+  "ci_30_upper": 0.0719382655851476,
+  "churn": [
+    {
+      "horizon_days": 1,
+      "mean": 0.1349381790932933,
+      "count": 2669
+    },
+    {
+      "horizon_days": 7,
+      "mean": 0.23599924727135863,
+      "count": 2657
+    },
+    {
+      "horizon_days": 30,
+      "mean": 0.3331546707503828,
+      "count": 2612
+    }
+  ],
+  "thresholds": [
+    {
+      "threshold_percent": 5.0,
+      "episode_count": 3688,
+      "median_duration_days": 2.0
+    },
+    {
+      "threshold_percent": 10.0,
+      "episode_count": 2668,
+      "median_duration_days": 2.0
+    },
+    {
+      "threshold_percent": 20.0,
+      "episode_count": 964,
+      "median_duration_days": 2.0
+    }
+  ],
+  "inputs": {
+    "outputs/report/report_summary.json": "bd8e974ad0deed410a86927859ea13aad7b0eede1ee91e563c27c13e41dd0347",
+    "outputs/tables/episode_survival.csv": "a0cbc0f8bdc2486bc9b2e435d2590c6532e9f43de7df87d408fc5eceafa80e09",
+    "outputs/tables/ranking_churn.csv": "96d4ce2333e20c5d8efb10974ed297914abb18beaba40b9f3a02b34c5d62e57c",
+    "outputs/tables/robustness_checks.csv": "20febf91fa7fe47b801305c75c2a29a49d70984468b1124a0b691f09df5a1e72",
+    "outputs/tables/apy_tvl_event_response.csv": "cfcd265a4fd920c5b7309a1eb9d3179fe0cd7110f7d7ec3d9c0143ee699b4656",
+    "outputs/tables/depeg_event_study.csv": "6ef43f96a4620b74d7b50e741f61ef446b29744342bae0518e288a350b621bfb"
+  },
+  "versions": {
+    "pandas": "2.3.3",
+    "numpy": "2.4.6",
+    "matplotlib": "3.11.0",
+    "plotly": "6.8.0",
+    "lifelines": "0.30.3"
+  }
+}

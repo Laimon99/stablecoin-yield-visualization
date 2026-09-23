@@ -43,3 +43,21 @@ Pool archetypes are generated with standardized pool-level features and k-means 
 ## Responsible Interpretation
 
 APY is quoted annualized APY, not realized return. The analysis excludes individual wallet paths, gas, slippage, reward liquidation, tax treatment and legal suitability. All outputs are educational visual analytics only.
+
+## Uncertainty and observation boundaries (September revision)
+
+The published Kaplan–Meier interval at day 30 is 5.34–7.19%, around S(30) = 6.22%.
+It is a 95% pointwise interval under the lifelines episode-independence assumption,
+not a simultaneous band or a pool-clustered interval. Repeated episodes within a
+pool can be dependent. Episodes active at entry may have begun before observation;
+their durations are observed-run lengths. Gaps above the allowed tolerance end
+an observed run and are not proof of an economic threshold crossing.
+
+History-length robustness operates within the selected sample. In particular,
+the 90-day filter cannot recover pools excluded by the initial 180-observation
+eligibility rule. The observed two-day median is robust to the reported filters,
+but this does not establish representativeness or eliminate selection bias.
+
+The APY/TVL event curves aggregate available observations at each offset, so
+changes in event composition can contribute to apparent differences over time.
+The results are descriptive and do not identify a causal response lag.

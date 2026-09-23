@@ -34,3 +34,18 @@ ASR tooling was unavailable at the time of the academic analysis.
 Residual caveat: course audio could not be transcribed locally; this historical limitation is
 documented in `docs/decision_log.md` and `docs/limitations_ethics.md`. The course files themselves
 are not part of the public portfolio release.
+
+## September feedback addendum
+
+| Explicit assessment requirement | Revised evidence |
+| --- | --- |
+| Author, student ID and email on cover | Revised slide 1 |
+| Name analytical libraries and link code | Revised slides 15–16, repository URL and `uv.lock` |
+| Demonstrate two visualization tools | Matplotlib figures plus Plotly companion generated from public aggregate tables |
+| State licence for original work | Revised slides 16–17, MIT code and CC BY 4.0 original materials in LICENSE |
+| Explain reproducibility accurately | Offline aggregate reconstruction distinguished from full live recollection; `docs/reproduction.md` |
+
+The earlier “Done” entries describe the original course-material checklist. They
+did not establish that the presentation explicitly documented the additional
+requirements highlighted in the instructor's feedback. The new evidence closes
+those documentation gaps without asserting a guaranteed grade.

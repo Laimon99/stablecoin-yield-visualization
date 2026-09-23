@@ -9,6 +9,47 @@
 **Simone Ragusini** · Master's-level Data Visualization project · End-to-end analysis,
 visual storytelling and reproducible research pipeline
 
+**Student ID:** 945119 · **Email:** s.ragusini@campus.unimib.it
+
+## File to submit
+
+Submit **only [Simone_Ragusini_945119.pdf](outputs/submission/Simone_Ragusini_945119.pdf)**.
+This self-contained 17-page PDF includes the results, actual Matplotlib and
+Plotly figures, methods, limitations, author details, repository link and licences.
+The editable deck, HTML, extended report and ZIP below are supporting materials,
+not additional exam uploads. The evaluation is asynchronous.
+
+## Revised submission, September 2026
+
+The revision responds to the instructor's feedback with explicit authorship,
+two demonstrated visualization tools, a linked repository, reproducible aggregate
+evidence, licences and more precise statistical interpretation.
+
+- [Revised presentation PDF (17 slides)](outputs/revision/Simone_Ragusini_945119_Stablecoin_Yield.pdf)
+- [Revised editable PowerPoint](outputs/revision/Simone_Ragusini_945119_Stablecoin_Yield.pptx)
+- [Revised analytical report (20 pages)](outputs/revision/Simone_Ragusini_945119_Report.pdf)
+- [Offline interactive Plotly companion](outputs/revision/stablecoin_yield_interactive.html) (download and open in a browser)
+- [Response to every feedback point](docs/feedback_response.md)
+- [Reproduction guide](docs/reproduction.md) and [oral-defense guide](docs/oral_defense_revision.md)
+
+**Two visualization tools:** Matplotlib for the static analytical figures and
+Plotly for interactive survival, churn and sensitivity charts. Seaborn supports
+Matplotlib; Artifact Tool assembles the PowerPoint.
+
+Reproduce the published aggregate evidence without provider API access:
+
+```sh
+uv sync --frozen --extra dev
+uv run python scripts/reproduce_published.py
+```
+
+This checks headline consistency and creates the self-contained HTML companion
+and a JSON audit with source hashes and actual library versions. It does not
+claim reconstruction of the undistributed historical raw data. For the full
+method against live APIs, see the separate instructions below.
+
+The links below retain the original July analytical deliverables for comparison.
+
 [**View the visual case study (PDF)**](outputs/presentation/stablecoin_yield_presentation.pdf)
 · [Read the full report](outputs/report/stablecoin_yield_report.pdf)
 
@@ -71,7 +112,7 @@ limitations explicit rather than presenting a hidden safety score.
 6. [Data-quality report](outputs/quality/data_quality_report.md)
 7. [Figure registry](outputs/figures/figure_registry.csv)
 
-The accepted exam presentation is intentionally frozen. Its integrity record is documented in
+The original 14-slide exam presentation is retained as a historical version. Its integrity record is documented in
 [docs/exam_presentation_integrity.md](docs/exam_presentation_integrity.md).
 
 ## How the analysis works
@@ -109,7 +150,7 @@ run creates them under `data/`, which is ignored by Git. See [NOTICE.md](NOTICE.
 Requirements: Python 3.11+ and [uv](https://docs.astral.sh/uv/).
 
 ```bash
-uv sync --extra dev
+uv sync --frozen --extra dev
 uv run ruff check src scripts tests
 uv run pytest
 ```
@@ -159,10 +200,11 @@ bridge, oracle, liquidity, legal or investor-specific risk. No output identifies
 - **Context:** Master's-level academic project for a Data Visualization course
 - **Role:** Research framing, data pipeline, statistical analysis, visualization, reporting and QA
 - **Core stack:** Python, pandas, NumPy, Matplotlib, Seaborn, scikit-learn, lifelines, DuckDB,
-  ReportLab, PowerPoint, Pytest, Ruff and GitHub Actions
+  Plotly, ReportLab, PowerPoint, Pytest, Ruff and GitHub Actions
 
 ## Attribution and rights
 
 The analysis uses official DeFiLlama and CoinGecko APIs. Provider attribution and current terms
-are recorded in [NOTICE.md](NOTICE.md). Original project code and authored materials are reserved
-under [LICENSE](LICENSE); no third-party data rights are granted by this repository.
+are recorded in [NOTICE.md](NOTICE.md). Original code uses the MIT License; original
+presentation, report, documentation and authored visual expression use CC BY 4.0.
+See [LICENSE](LICENSE) for scope. No third-party data rights are granted.
